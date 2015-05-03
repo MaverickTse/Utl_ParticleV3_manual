@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<title>02: Path and FBSwitching</title>
+</head>
+
+<body>
+<figure>
+<img src="02.png">
+<figcaption>Fig02: Path@ (1st effect panel) and FBSwitching@ (2nd effect panel).Dialog on the left is part of FBSwitching. </figcaption>
+</figure>
+
+<h2>Path</h2>
+<p>
+Define an external file. To be used with Emission@, Text@, Image@, Style@, Funnel@ and Object3D@. Multiple Path@ can be attached to the same object.
+</p>
+
+<h3>Sliders</h3>
+<p>
+There is only a single slider that defines the ID to be associated with a file.
+</p>
+
+<h3>Reference button</h3>
+<p>Click on this then select a file</p>
+
+<h3>Check box: Singular</h3>
+<p>
+When files in the same folder are named as a number series, e.g.
+<pre>
+01.avi
+02.avi
+03.avi
+</pre>
+Ticking this check box means only 01.avi will be used for particle generation. Disabling this option will utilize 01.avi, 02.avi and 03.avi for particle generation.
+</p>
+
+
+<h2>FBSwitching</h2>
+
+<p>
+For swapping particle image as it moves and spinning image with a different back-side.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>F< >B
+  <ul><li>Change the order of emission. Usually the same as value 0</li>
+  <li>At value 0, the particle emitted second is considered front</li>
+  <li>At value 1, the particle emitted first is considered front</li>
+  </ul>
+  
+  </li>
+  <li>Face(In2</li>
+  <ul><li>Define if current object is the front or back side of the composite object.</li>
+  <li>0 means front side, 1 and 2 for back side</li>
+  <li>1 and 2 differ by their facing when displayed</li>
+  </ul>
+  <li>DblFace</li>
+  <ul><li>Enable synthesis of double-side object as defined by Face(In2 slider</li>
+  <li>Please set Seed value of ParticleRender to negative value when enabling this option</li>
+  </ul>
+  <li>Rotation</li>
+  <ul><li>Change the order of axis rotation processing, giving variety to rotation pattern.</li>
+  <li>0: z > y > x (no tilt)</li>
+  <li>1: z > x > y</li>
+  <li>2: z > y > x</li>
+  <li>3: y > z > x</li>
+  <li>4: y > x > z</li>
+  <li>5: x > y > z</li>
+  <li>6: x > z > y</li>
+  Setting RotSpeed(ParticleRender) on all axis probably gives undesirable result. 
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Lighten processing(unusable)
+  <ul><li>(Ignore this)</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>RevFreq
+  <ul><li>By default, Frequency value is defined as number of particles per 100ms. When this box is checked, The value's meaning changes to "interval between successive emission". When Frequency value is 100, one particle will be emitted every 1 second. At 200, emit every 2 seconds.</li></ul>
+  </li>
+    <li>RevPlayback
+  <ul><li>Effect will be generated in reverse motion</li> </ul>
+  </li>
+    <li>Face movement
+  <ul><li>Particle's output direction will depends on object's movement vector. Only consider movement on the xy-plane, ignoring movement through depth.</li>
+  <li>Since calculation depends on particle's initial rotation and angular speed, setting InitialRot and RotSpeed (ParticleRender) to 0 is recommended.</li>
+  </ul>
+    </li>
+	<li>Play game
+  <ul><li>Play a mini-game</i></li>
+  <li>First make this object very very long~ then preview in the playback window.</li>
+  
+  </ul>
+  
+  </li>
+</ul>
+</p>
+</body>
+</html>

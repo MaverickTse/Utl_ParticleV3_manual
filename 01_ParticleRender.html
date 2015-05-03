@@ -1,0 +1,127 @@
+<html>
+
+<head>
+<title>01: ParticleRender</title>
+</head>
+
+<body>
+<figure>
+<img src="01.png">
+<figcaption>Fig01: Essential child FX "ParticleRender" settings</figcaption>
+</figure>
+<h2>ParticleRender</h2>
+<p><font color="red"><i>(Background in middle school physics is highly recommended in order to gain a better understanding on this article)</i></font></p>
+<p>
+<b>ParticleRender@particle_ri_ver3</b> is the only child effect that actually generates visible particles.It can be attached to any Graphics or Image object to generate a simple particle effect.
+Unlike the built-in particle generator, <b>this FX does not support the use of time-dependent change via mid-points.</b>
+There are facilities to replace the use of mid-point, so don't worry.
+This effect should be the last one among the attached @particle_ri_ver3 effect queue.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>Speed
+  <ul><li>Initial velocity as displacement per second for each new particle</li></ul>
+  </li>
+  <li>Frequency</li>
+  <ul><li>number of particles generated per 100ms</li></ul>
+  <li>Direction</li>
+  <ul><li>Initial direction when the particle is ejected. 0 means South.</li></ul>
+  <li>Spread</li>
+  <ul><li>Particles will be ejected within the sector Direction±Spread. Therefore a value of 180 will emit particles in all direction. Note that this effect alone will not emit particle along the z-axis(i.e. depth)</li></ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Vanish on ending
+  <ul><li>Make fragments' survival time ends at object's end</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Concurrent count
+  <ul><li>Number of particles to be emitted at the same time. Similar to Frequency, increasing this value increases the overall particle amount. You can input a range in the form of <i>{min_value,max_value}</i> and the script will choose a random value in this range at run time.</li></ul>
+  </li>
+    <li>xy-Gravity
+  <ul><li>Apply external force along the specified axis</li>
+      <li>Positive value will add acceleration to the positive direction(x:right,y:bottom), while negative value will apply force towards the negative direction(x:left,y:top)</li>
+	  <li>A single number in this field will apply force along the y-axis only</li>
+	  <li>To apply a 2D force vector, use the form <i>{gravity_x,gravity_y}</i></li>
+  </ul>
+  </li>
+    <li>Accel
+  <ul><li>Apply acceleration or deceleration to each particle. Use positive value for acceleration, negative value for deceleration. Particle may stop still for deceleration.</li></ul>
+    </li>
+	<li>InitialRot
+  <ul><li>Initial particle rotation state in the form <i>{x-rotation,y-rotation,z-rotation}</i></li>
+  <li>To set the three values as the same, just enter a single value.</li>
+  <li>To use a random value, input <i>r</i> instead of a number like: <i>{0,r,0}</i>. This will cause random rotation along the y-axis when a particle is emitted.</li>
+  </ul>
+  </li>
+    <li>RotSpeed
+  <ul><li>Rotation amount per second,i.e. angular speed. Higher value makes particle spin faster.</li>
+  <li>Input a single value to set angular speed for the three axis to the same value.</li>
+  <li>To set the value for each axle independently, use the form <i>{x-value,y-value,z-value}</i></li>
+  </ul>
+  </li>
+    <li>RevRot
+  <ul><li>Reverse rotation. When checked, a particle will have a 50% chance that RotSpeed be multiplied by -1.In effect, half of the emitted particles will have the opposite spin.</li></ul>
+  </li>
+    <li>SurviveTime
+  <ul><li>The time from a particle is emitted to the moment it disappear, in second.</li></ul>
+  </li>
+    <li>Alpha
+  <ul><li>Transparency. 100 being opaque, 0 being completely transparent.</li>
+  <li>This field use a pair of value <i>{starting_alpha, ending_alpha}</i>.</li>
+  <li>If only a single value is defined, it will assume <i>{100, value}</i></li>
+  <li>Starting_alpha is the transparency when a particle is emitted. Ending_alpha is the transparency just before a particle vanish (as controlled by SurviveTime)</li>
+  </ul>
+  </li>
+    <li>Zoom
+  <ul><li>Change the size of a particle over time in percent.</li>
+  <li>100 being the original size, 0 being invisible, 200 being double sized.</li>
+  <li>Input format: <i>{starting_zoom,ending_zoom}</i></li>
+  <li>If only a single value is given, assume the same as <i>{100, value}</i></li>
+  <li>Starting_zoom means the magnification for a particle when first emitted. Ending_zoom means the magnification of a particle just before SurviveTime expires.</li>
+  </ul>
+  </li>
+    <li>StTime
+  <ul><li>A delay interval starting from the object's start to the emission of the first particle. Value in seconds.</li></ul>
+  </li>
+    <li>Face camera
+  <ul><li>When used with the Camera Control object, particle's front will always turn to face the camera directly. This effect would be override by non-zero RotSpeed for x or y axis</li></ul>
+  </li>
+    <li>Flatten
+  <ul><li>By default, particles exist as separate entity. When this option is checked, all particles' images are merged and flatten to a single entity. Useful for casting extra effects after ParticleRender.</li>
+  <li>Note that domain display(Emission@ and Bounce@) will be non-functional when this option is active.</li>
+  </ul>
+  </li>
+    <li>Canvas
+  <ul><li>The size of the flatten image when Flatten option is enabled.</li>
+  <li>Input format: <i>{width_px, height_px}</i></li>
+  <li>Giving a single value would means the same width and height</li>
+  </ul>
+  </li>
+    <li>Precision
+  <ul><li>At low value, particles may look bumpy. A value of 5 usually gives sufficiently smooth motion.</li></ul>
+  </li>
+    <li>IgnoreWind0~2
+  <ul><li>Define whether particle should be affected by Wind@ or grid info from Depth_n'Grid@</li>
+  <li>0: affected by Wind and Grid</li>
+  <li>1: Not affected by Wind or Grid</li>
+  <li>2: Pass on the same Wind/Grid effect to the ParticleRender object on layer N+1</li>
+  <li>Option 1 maybe useful when using the Flatten option.</li>
+  <li>Use option 2 to define a single Wind object and share its effect to multiple particle objects in layers below.</li>
+  <li>ParticleRender object on the largest layer must use 0, otherwise the velocity graphs may keep showing up. </li>
+  </ul>
+  </li>
+    <li>Seed
+  <ul><li>A number for use with the random number generator. Use negative value to remove random variation across layers.</li></ul>
+  </li>
+</ul>
+</p>
+</body>
+</html>
