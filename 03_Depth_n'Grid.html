@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<title>03: Depth_n'Grid</title>
+</head>
+
+<body>
+<figure>
+<img src="03.png">
+<figcaption>Fig03: Setting panels for Depth_n'Grid</figcaption>
+</figure>
+<h2>Depth_n'Grid</h2>
+<p>
+Enables the emission of particle along the z-axis (depth) making the particle object truly 3D.
+It can also force particles to run through a grid of defined shape.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>z-Direction
+  <ul><li>The depth component for particle output direction.</li></ul>
+  </li>
+  <li>z-Spread</li>
+  <ul><li>use 180 for omni-direction emission</li></ul>
+  <li>z-Gravity</li>
+  <ul><li>Gravity pointing along the z-axis. Positive value cause acceleration pointing out of the screen, while negative value cause acceleration pointing towards the screen.</li></ul>
+  
+</ul>
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>GridIntvl_x(r)
+  <ul><li>Grid points interval along the x-axis(horizontal). As radial interval if PolarCoord is checked.</li></ul>
+  </li>
+    <li>GridIntvl_y(theta)
+  <ul><li>Grid points interval along the y-axis (vertical).</li>
+      <li>As angular interval on the x-y plane if PolarCoord is checked.</li>
+	  
+  </ul>
+  </li>
+    <li>GridIntvl_z(phy)
+  <ul><li>Grid points interval along the z-axis (depth). As partition angle on the x-z plane when PolarCoord is checked.</li></ul>
+    </li>
+	<li>PolarCoord
+  <ul><li>When checked, a grid using polar coordinate with origin on object's center will be used. Otherwise, a typical Cartesian(rectangular) coordinate grid will be used.</li>
+  </ul>
+  </li>
+    <li>GetGridInfo
+  <ul><li>Should be enabled only on the object that defines grid shape, and to be placed on layer N-1 if the object with ParticleRender is on layer N.</li>
+  <li>When using the grid feature, input non-zero values to GridIntvl_x, GridIntvl_y and GridIntvl_z and use the same numbers on the object on layer N</li>
+  </ul>
+  </li>
+    <li>RevGrid
+  <ul><li>Invert transparency data of the grid.</li></ul>
+  </li>
+    <li>Bidirectional
+  <ul><li>Emit particles in two directions simultaneously</li></ul>
+  </li>
+    <li>xy_facing
+  <ul><li>The extra particle output direction when using Bidirectional option.</li>
+  </ul>
+  </li>
+    <li>xy_spread
+  <ul><li>The extra spread angle when using Bidirectional option</li>
+  </ul>
+  </li>
+    <li>z_facing
+  <ul><li>The extra output direction along depth when using Bidirectional output</li></ul>
+  </li>
+    <li>z_spread
+  <ul><li>The extra spread angle along depth when using Bidirectional output</li></ul>
+  </li>
+
+</ul>
+</p>
+</body>
+</html>
