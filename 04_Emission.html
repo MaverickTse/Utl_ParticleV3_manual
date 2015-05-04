@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<title>04: Emission</title>
+</head>
+
+<body>
+<figure>
+<img src="04A.png">
+<figcaption>Fig04A: Emission from a line/anchor points (Type 3). The Count slider sets the number of anchor points, which allows creation of a bended path.</figcaption>
+</figure>
+<hr>
+<img src="04B.png">
+<figcaption>Fig04B: Emission from a boxed area (Type 5). Set Option=1 to visualize the emission area, set to zero to hide it.</figcaption>
+</figure>
+<hr>
+<img src="04C.png">
+<figcaption>Fig04C: Emission from a custom image (Type 7). The Count slider means the reference image(triangle) is N layer above this object(circle). Before setting type to 7, please get the reference object ready first, or error may occur.</figcaption>
+</figure>
+
+<h2>Emission</h2>
+<p>
+Define emission origin as points, area or a 3D-space.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>Count(Layer)
+  <ul><li>When Type is 1, 2 or 7, this slider means "Letting the current object is on layer N, the reference object is on layer N-Count, "</li>
+  <li>When Type is 3 or 4, it means the number of anchors</li>
+  <li>When Type is 8 and used with Path@, this value is the pathID.</li>
+  </ul>
+  </li>
+  <li>Type</li>
+  <ul><li>1: Emission origin tracks another object on layer above. Count slider sets the reference layer. It tracks the reference object's x, y and z slider values. Please set the duration of the reference object the same as the particle object.</li>
+  <li>2: Almost identical to type 1</li>
+  <li>3: Defines emission from a line (Option=0) or from anchor points(Option=1). The number of anchor points is set by the Count slider. Option=0 is basically a get-around for ParticleRender not supporting temporal change via use of mid-points.</li>
+  <li>4: Similar to Type 3 but runs along the line, pretty like the worms in pacman game</li>
+  <li>5: Particles randomly emitted from a 3D-boxed region. The region is defined by 2 anchor points and the boxed region can be color-visualized by setting Option=1. Note that the anchor points may be difficult to adjust unless you switch the object to Advanced drawing mode and use with Camera control object.</li>
+  <li>6: Similar to 5 but the emission region is a sphere.</li>
+  <li>7: Similar to 1 and 2 but it also looks into the shape and color(Option=1) of the reference object. A few points to note when using type7:
+    <ul>
+	<li>Temporal change of position and rotation of reference object are supported, but anchor position, size and magnification changes are not supported.</li>
+	<li>Please set the same duration for the reference object and the particle object.</li>
+	<li>DO NOT attach the built-in <font color="red">Emission</font> effect to the reference object!</li>
+	</ul>
+  </li>
+  <li>8: Emission pattern determined by external topological function. Path@ should be the first child effect attached to this object. Count slider means the PathID. Sample functions can be found in the <font color="blue">./CustomFunctionSample</font> folder with name <font color="blue">Emit*.txt</font>. Just point Path@ to one of the TXT file.</li>
+  </ul>
+  <li>Value</li>
+  <ul>
+    <li>When Type=2, this is a 0.1X speed multiplier. Only effective when Opt2 is checked.</li>
+	<li>When Type=4, this is the total time (in seconds) required to run from on end of the line to the other end.</li>
+	<li>When Type=5, this sets the void space(%) at the center of emission region. No particle will be emitted from the void space. Set it to zero to emit from anywhere inside the region. Set it to 100 to emit only from region boundary.</li>
+	<li>When Type=6, this also sets the center void. See the Type=5 entry above.</li>
+	<li>When Type=7, this sets the threshold for shape outline.</li>
+  </ul>
+  <li>Option</li>
+  <ul>
+    <li>Type1
+	  <ul>
+	  <li>0: Particle output direction follows reference object's movement</li>
+	  <li>1: Output direction not taking object movement into account</li>
+	  </ul>
+	</li>
+	<li>Type2
+	  <ul>
+	  <li>0: same as Type 1</li>
+	  <li>1: same as Type 1</li>
+	  </ul>
+	</li>
+	<li>Type3
+	  <ul>
+	  <li>0: Emit from the line as defined by anchor points</li>
+	  <li>1: Emit from anchor points only</li>
+	  </ul>
+	</li>
+	<li>Type4
+	  <ul>
+	  <li>0: Stop at final anchor</li>
+	  <li>1: Loop back to first anchor after the final anchor</li>
+	  </ul>
+	</li>
+	<li>Type5
+	  <ul>
+	  <li>0: Hide emission region</li>
+	  <li>1: Display emission region</li>
+	  </ul>
+	</li>
+	<li>Type6
+	  <ul>
+	  <li>0: Hide emission region</li>
+	  <li>1: Display emission region</li>
+	  </ul>
+	</li>
+	<li>Type7
+	  <ul>
+	  <li>0: Use this object's color</li>
+	  <li>1: color depends on the reference object and the location of emission (see Fig04C)</li>
+	  </ul>
+	</li>
+	<li>Type8
+	  <ul>
+	  <li>0: Use external file as defined by Path@</li>
+	  <li>1: Use <font color="orange">Scrip control</font> in this object instead of external file.</li>
+	  </ul>
+	</li>
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Synthesis Line
+  <ul><li>For type 3 and 4, enable this if you need more than 16 anchor points. Then you can attach another Emission@ child effect.</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Opt2
+  <ul>
+    <li>Type1: Random particle output from the path of the reference object</li>
+	<li>Type2: add particle speed with reference object's speed</li>
+	<li>Type3: 
+	  <ul>
+	    <li>Option=0: Concurrent emission from the same spot</li>
+		<li>Option=1: Concurrent emission from different anchor points</li>
+	  </ul>
+	</li>
+	<li>Type4: Smooth out the motion </li>
+	<li>Type5: Concurrent emission from the same spot</li>
+	<li>Type6: Concurrent emission from the same spot</li>
+	<li>Type7: Particle output direction follows reference object's movement</li>
+	
+  </ul>
+  </li>
+    <li>line
+	<ul><li>Anchors position in numbers</li></ul>
+  </li>
+
+</ul>
+</p>
+<hr>
+<h2>About custom function</h2>
+<p>
+There are two types of functions that you can define, differing in return values:
+</p>
+<p>
+Type1 template:
+<pre>
+function xyz(t)
+	local r=
+	local x=
+	local y=
+	local z=
+	return x,y,z
+end
+</pre>
+where t is object time in seconds,while x,y and z are particle's emission coordinate. r is a user-defined variable.
+</p>
+<p>
+Type2 template:
+<pre>
+function xyzd(t)
+	local r=
+	local degxy=
+	local degz=
+	local x=
+	local y=
+	local z=
+	degxy=
+	return x,y,z,degxy,degz
+end
+</pre>
+where t is object time in seconds,<br/>
+x,y,z: emission coordinate, <br/>
+degxy: output angle on x-y plane in radian <br/>
+degz: output angle for depth in radian.
+</p>
+<p>
+If you are not using Script control to define these functions, please save the function as ASCII/SJIS text with .txt or .lua extension.
+</p>
+</body>
+</html>
