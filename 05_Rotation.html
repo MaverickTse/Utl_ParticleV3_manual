@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>05: Rotation</title>
+</head>
+
+<body>
+<figure>
+<img src="05.png">
+<figcaption>Fig05: setting panel for Rotation@particle_ri_ver3</figcaption>
+</figure>
+<hr>
+
+<h2>Rotation</h2>
+<p>
+Add variation to rotation speed.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>Speed
+  <ul><li>Angular speed (Angle per second). Common for all axis.</li>
+  </ul>
+  </li>
+  <li>x-Jiggle</li>
+  <ul><li>Max rotation angle along x-axis</li>
+  </ul>
+  <li>y-Jiggle</li>
+  <ul>
+    <li>Max rotation angle along y-axis</li>	
+  </ul>
+  <li>z-Jiggle</li>
+  <ul>
+    <li>Max rotation angle along z-axis</li>
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Random facing
+  <ul><li>Randomize initial rotation angle. Otherwise rotation will loops through <i>0</i> to <i>#-Jiggle</i> by default. It loops through <i>Rand</i> to <i>#-Jiggle</i> if checked.</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>IndvlSpd
+  <ul><li>Define the range of angular speed to be chosen for each particle.</li></ul>
+  </li>
+  <li>Indvl_xJiggle
+  <ul><li>Define the range of x-rotation angle to be chosen for each particle. </li></ul>
+  </li>
+  <li>Indvl_yJiggle
+  <ul><li>Define the range of y-rotation angle to be chosen for each particle. </li></ul>
+  </li>
+  <li>Indvl_zJiggle
+  <ul><li>Define the range of z-rotation angle to be chosen for each particle.  </li></ul>
+  </li>
+  <li>Sync Jiggle
+  <ul><li>When checked, all particles rotate in sync </li></ul>
+  </li>
+  <li>xSpreadAdj
+  <ul><li>Angle to be added to initial x-rotation angle per second </li></ul>
+  </li>
+  <li>ySpreadAdj
+  <ul><li>Angle to be added to initial y-rotation angle per second </li></ul>
+  </li>
+  <li>zSpreadAdj
+  <ul><li>Angle to be added to initial z-rotation angle per second </li></ul>
+  </li>
+  <li>xyzAccel
+  <ul>
+    <li>Add time-dependent change to rotation speed</li>
+	<li>Applies to each particle independently</li>
+	<li>Input format: <i>{Angular acceleration for x, Angular acceleration for y, Angular acceleration for z}</i></li>
+	<li>If only a single value is set, only angular acceleration for z will be set.</li>
+	<li>Allows negative value for deceleration</li>
+  </ul>
+  </li>
+  <li>NoRevAccel
+  <ul><li>No reverse acceleration. When checked, rotation speed has a minimum of zero and stays at zero once it reach zero.  When unchecked, it will accelerate in the opposite direction after reaching zero rotation speed.</li></ul>
+  </li>
+  <li>xAccLimit
+  <ul><li>Upper limit for x-rotation speed. Positive value only, regardless of rotation direction. </li></ul>
+  </li>
+  <li>yAccLimit
+  <ul><li>Upper limit for y-rotation speed. Positive value only, regardless of rotation direction. </li></ul>
+  </li>
+  <li>zAccLimit
+  <ul><li>Upper limit for z-rotation speed. Positive value only, regardless of rotation direction. </li></ul>
+  </li>
+  <li>AccTiming
+  <ul>
+    <li>Define when angular acceleration (xyzAccel) starts to take effect. Values in milliseconds </li>
+	<li>Input format: <i>{time-x,time-y,time-z} </i> </li>
+	<li>A single value will set <i>time-z</i> only </li>
+  </ul>
+  </li>
+  <li>RelativeTime
+  <ul>
+    <li>Change the definition of "time zero" for use with AccTiming</li>
+	<li>Unchecked: The start of the object is counted as zero </li>
+	<li>Checked: zero is counted from the moment a particle is emitted. </li>
+  </ul>
+  </li>
+  <li>Indvl_Acc
+  <ul>
+    <li>Individual acceleration and timing. The range of angular acceleration and corresponding timing from which will be randomly chosen. </li>
+	<li>Standard form: <i>{x-Acceleration range,y-Acceleration range,z-Acceleration range, shared timing} </i> </li>
+	<li>Expanded form: <i>{x-Acceleration range,y-Acceleration range,z-Acceleration range, time range-x,time range-y,time range-z} </i> </li>
+	<li>A single value will only set z-Acceleration range. </li>
+  </ul>
+  </li>
+</ul>
+</p>
+<hr>
+
+</body>
+</html>
