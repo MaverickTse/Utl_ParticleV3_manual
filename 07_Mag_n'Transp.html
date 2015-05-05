@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<title>07: Mag_n'Transp</title>
+</head>
+
+<body>
+<figure>
+<img src="07.png">
+<figcaption>Fig07: setting panel for Mag_n'Transp@particle_ri_ver3</figcaption>
+</figure>
+<hr>
+
+<h2>Magnification and Transparency</h2>
+<p>
+Provides flexible control to particles' magnification and transparency. Parameters for magnification starts with "Mag", those for transparency starts with "Alp" (stands for alpha).
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>StZoom
+  <ul><li>Initial magnification when a particle is first emitted.</li>
+  <li>Overrides ParticleRender@particle_ri_ver3 setting</li>
+  <li>Affects FineAdjustment@particle_ri_ver3</li>
+  </ul>
+  </li>
+  <li>EdZoom</li>
+  <ul><li>Final magnification when a particle reaches its survival time.</li>
+  <li>Overrides ParticleRender@particle_ri_ver3 setting</li>
+  <li>Affects FineAdjustment@particle_ri_ver3</li>
+  </ul>
+  <li>StAlpha</li>
+  <ul>
+    <li>Initial transparency when a particle is first emitted.</li>
+	<li>Overrides ParticleRender@particle_ri_ver3 setting</li>
+    <li>Affects FineAdjustment@particle_ri_ver3</li>
+  </ul>
+  <li>EdAlpha</li>
+  <ul>
+    <li>Final transparency when a particle reaches survival time.</li>
+	<li>Overrides ParticleRender@particle_ri_ver3 setting</li>
+    <li>Affects FineAdjustment@particle_ri_ver3</li>
+ </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>RelativeTime
+  <ul><li>Checked: Time zero is when a particle is emitted.</li>
+  <li>Unchecked: Time zero is the object's starting point.</li>
+  </ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<font color="red">(In the following, <font color="blue">___</font> can be replaced by either <font color="blue"><i>Mag</i></font> or <font color="blue"><i>Alp</i></font>)</font>
+<ul>
+  <li>___MidPtTime
+  <ul><li>Set the timing of mid-point(s).</li>
+  <li>Value in milliseconds.</li>
+  <li>Input format: <i>{MP[1]Time,MP[2]Time,MP[3]Time,...,MP[n]Time}</i></li>
+  <li>The number series must be increasing. For example, <i>{1000,2000,3000}</i> is valid, while <i>{2000,3000,1000}</i> is invalid.</li>
+  <li>Giving only a single value will set a single mid-point.</li>
+  </ul>
+  </li>
+  <li>___MidValue
+  <ul><li>The Zoom or Transparency values at mid-points as defined by ___MidPtTime.</li>
+  <li>Must possess the same number count as ___MidPtTime, or gives no effect.</li>
+  <li>Input format: <i>{value[1],value[2],value[3],...,value[n]}</i></li>
+  </ul>
+  </li>
+  <li>___TweenType0~2
+  <ul>
+    <li>0: Instantaneous value jump</li>
+	<li>1: Linear change</li>
+	<li>>2: Repetitive change with <i>this value</i> number of times. For odd number, final value is the changed one. For even value, the final value is the initial one before changing.</li>
+	<li>Input format: <i>{segment[1],segment[2],segment[3],...,segment[n+1]}</i></li>
+	<li>Number count must be ONE more than ___MidPtTime</li>
+	<li>Leaving this field blank would assume Linear change(1)</li>
+  </ul>
+  </li>
+  <li>___Time_Val_Type
+  <ul><li>Add limited random variation to mid-points' time, value and change type.</li>
+  <li>Input format: <i>{time_deviation,value_deviation,type_deviation} </i>, while type_deviation will be effective only if >2.</li>
+  </ul>
+  </li>
+  <li>____ReflectMid
+  <ul><li>When using with Bounce@particle_ri_ver3 or Bounce2@particle_ri_ver3, use the moment of bounce as mid-point.</li>
+  <li>Please set this to 1, or may give error.</li>
+  </ul>
+  </li>
+  <li>____ScatterMid
+  <ul><li>When using with Style2@particle_ri_ver3, use the time of scattering as mid-point.</li>
+  <li>Please set this to 1 to avoid error.</li>
+  </ul>
+  </li>
+  <li>____LoopMid
+  <ul><li>Specify the mid-point after which the value will go back to initial value and loop.</li>
+  <li>Value is <i>mid-point order +1</i></li>
+  </ul>
+  </li>
+  <li>Sync emission
+  <ul><li>Synchronize variation among particles emitted at the same time when "Concurrent" option is set in ParticleRender.</li></ul>
+  </li>
+  
+</ul>
+</p>
+<hr>
+
+</body>
+</html>
