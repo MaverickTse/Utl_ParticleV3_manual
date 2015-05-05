@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<title>06: FocalPoint</title>
+</head>
+
+<body>
+<figure>
+<img src="06A.png">
+<figcaption>Fig06A: setting panel for FocalPoint@particle_ri_ver3</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="06B.png">
+<figcaption>Fig06B: Settings for the first attached FocalPoint effect when using Option0~2=2 and using more than 6 anchors. Note the Opt2ConvergeTime field contains 11 numbers(From 1000 to 6000 with step 500).</figcaption>
+</figure>
+<figure>
+<img src="06C.png">
+<figcaption>Fig06C: Settings for the second attached FocalPoint effect, while the first one is shown on Fig06B. Note that this one only defines extra anchors. The timing values all resides in the first FocalPoint effect.</figcaption>
+</figure>
+<h2>FocalPoint</h2>
+<p>
+Make particles move towards user-defined anchors.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>x1
+  <ul><li>x-Coordinate for the first anchor point (labeled as ➀)</li>
+  </ul>
+  </li>
+  <li>y1</li>
+  <ul><li>y-Coordinate for the first anchor point (labeled as ➀)</li>
+  </ul>
+  <li>z1</li>
+  <ul>
+    <li>z-Coordinate for the first anchor point (labeled as ➀)</li>	
+  </ul>
+  <li>AnchorCount</li>
+  <ul>
+    <li>Adding a maximum of 5 extra anchor points.</li>
+	<li>The extra anchors can be dragged around.</li>
+	<li>Setting it to a negative number will remove all anchors.</li>
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Show coordinate
+  <ul><li>Show the anchor points as ➀、➁、➂. See Fig06 for reference.</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Link anchor
+  <ul><li>Joining anchors to subsequent FocalPoint effects, hence increasing the maximum usable anchors.</li>
+  <li>When multiple FocalPoint effects are attached to the same object, <i>Option0~2</i> and <i>xyFacing</i> will use the first FocalPoint effect settings.</li>
+  <li>See Fig06B for example</li>
+  </ul>
+  </li>
+  <li>PtCoords
+  <ul><li>Coordinates of anchor points in numbers. </li></ul>
+  </li>
+  <li>StTime
+  <ul><li>Converge Starting Time. A delay time after which the particles would move towards anchors.</li></ul>
+  </li>
+  <li>RelTime
+  <ul><li>Relative time (for StTime).  </li>
+  <li>Unchecked: The start of object is treated as zero time. Suggested for Option0~2=2.</li>
+  <li>Checked: Particle-wise, the moment a particle is emitted is time zero. </li>
+  </ul>
+  </li>
+  <li>xyFacing
+  <ul><li>A deviation angle away from anchor point(s). Set this to 180 and the particles will move AWAY from anchors.</li></ul>
+  </li>
+  <li>xySpread
+  <ul><li>An angle of spread when particles move towards anchors. </li></ul>
+  </li>
+  <li>zFacing
+  <ul><li>Similar to xyFacing but for the depth component.</li></ul>
+  </li>
+  <li>zSpread
+  <ul><li>Similar to xySpread but for the depth component.</li></ul>
+  </li>
+  <li>Option0~2
+  <ul>
+    <li>Tweak how particles should move to anchors.</li>
+	<li>0: a particle will move towards a randomly chosen anchor.</li>
+	<li>1: a particle will move to the nearest anchor.</li>
+	<li>2: particles will move towards anchors one-by-one in order. Requires valid setting in StTime and Opt2ConvergeTime, or it will be treated the same as =0.</li>
+	<li>See Opt2ConvergeTime below for details.</li>
+  </ul>
+  </li>
+  <li>VanishAfterOpt0~1
+  <ul><li>A particle shall vanish within a certain radius from the target anchor. Effective only when Option0~2 is 0 or 1.</li></ul>
+  </li>
+  <li>VanishRadius
+  <ul><li>To be used with VanishAfterOpt0~1. Defines the size of a "black hole" area around each anchor. Note that this black hole area has no effect on particle that is supposed to approach another anchor. </li></ul>
+  </li>
+  <li>No vanish
+  <ul><li>Particles falling into the black hole area shall not vanish, but stop still instead. </li></ul>
+  </li>
+  
+  <li>Opt2ConvergeTime
+  <ul>
+    <li>A required setting when Option0~2 is 2</li>
+	<li>It defines the timing when particles should move towards the next anchor. </li>
+	<li>Consists of a number series where subsequent number should be larger than or equal to the previous one, and the first number should be larger than StTime.</li>
+	<li>Time in milliseconds. </li>
+	<li>Example: StTime=1000, Opt2ConvergeTime= <i>{3000,5000,7000}</i> for 3 anchors</li>
+	<li>When linking anchors, enter ALL timing values into the FIRST attached FocalPoint effect panel</li>
+	<li>See Fig06B and Fig06C for example</li>
+  </ul>
+  </li>
+  <li>IndvlConvergeTime
+  <ul>
+    <li>Add variation to Converge time</li>
+	
+  </ul>
+  </li>
+ 
+</ul>
+</p>
+<hr>
+
+</body>
+</html>
