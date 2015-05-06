@@ -1,0 +1,264 @@
+<html>
+
+<head>
+<title>08: Filter and Filter(For_Monochrome)</title>
+</head>
+
+<body>
+<figure>
+<img src="08A.png">
+<figcaption>Fig08A: setting panel for Filter@particle_ri_ver3. The setting dialog on the left is pop-up from the first attached Filter@particle_ri_ver3. This particular example applies noise to each particle.</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="08B.png">
+<figcaption>Fig08B: setting panel for Filter(For_Monochrome)@particle_ri_ver3. The setting dialog on the left is pop-up from the 3rd attached effect.</figcaption>
+</figure>
+
+<h2>Filter</h2>
+<p>
+Applies AviUtl built-in filter to each particle.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>ApplyToBody
+  <ul><li>0: Do not apply filter to particle body</li>
+  <li>1: Applies filter to particle body</li>
+  </ul>
+  </li>
+  <li>ApplyToPath</li>
+  <ul><li>0: Do not apply filter to particle's tail</li>
+  <li>1: Applies filter to particle's tail</li>
+  <li>Effective only when Trajectory@particle_ri_ver3 is attached.</li>
+  </ul>
+  <li>VarTime1</li>
+  <ul>
+    <li>The time for VarName1 begins to change</li>
+	<li>Value in milliseconds</li>
+  </ul>
+  <li>VarTime2</li>
+  <ul>
+    <li>The time for VarName2 begins to change</li>
+	<li>Value in milliseconds</li>
+ </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>RelativeTime
+  <ul><li>Checked: Time zero is when a particle is emitted.</li>
+  <li>Unchecked: Time zero is the object's starting point.</li>
+  </ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+
+<ul>
+  <li>FilterName
+  <ul><li>The name of a AviUtl built-in filter</li>
+  <li>Different for Japanese and English version of Exedit</li>
+  <li>"Animation effect" cannot be used.</li>
+  </ul>
+  </li>
+  <li>VarName1, VarName2
+  <ul><li>The parameter names of the filter that you want to change with time.</li>
+  <li>If you don't know the parameter name, create another object and cast that filter, then save the object as an alias. Open the EXA file with text editor and look for the names (left side of the equal sign)</li>
+  </ul>
+  </li>
+  <li>VarVal1, VarVal2
+  <ul>
+    <li>Initial-Final value pairs for VarName1 and VarName2.</li>
+	<li>Input format: <i>{initial,final,option}</i></li>
+	<li>option can be omitted. In such case: <i>{initial,final}</i></li>
+	<li>If only a single number is given, it will be the same as <i>{value,value}</i></li>
+	<li>When RelativeTime is checked, the initial value will be applied from the moment a particle is emitted until VarTime1(or 2). Then from VarTime1(or 2) to survival time, the value gradually change from the initial value to final value.</li>
+	<li>When RelativeTime is not checked, initial value will be applied from <b>object starts</b> until VarTime1(or 2). Then value gradually change to final value by object's end.</li>
+	<li>option is a value in milliseconds</li>
+	<li>When option is a positive value, it defines the time required for the transition from initial value to final value. </li>
+	<li>When option is a negative value, it takes <i>-1*value</i> seconds to go from initial to final, then it will take the same amount of time to go back to initial value. The value goes back and forth until object ends. </li>
+  </ul>
+  </li>
+  <li>Indvl(4types)
+  <ul><li>Adds random deviation to VarVal1 and VarTime1</li>
+  <li>Input format: <i>{VarVal1_initial,VarVal1_final,option,VarTime1} </i> </li>
+  <li>When only a single value is given, it is the same as <i>{value,value}</i> </li>
+  </ul>
+  </li>
+  <li>RandVarName
+  <ul><li>A parameter that is to be randomized within a given range</li>
+   </ul>
+  </li>
+  <li>RandVarVal
+  <ul><li>Defines the random value range for RanVarName: <i>{minimun,maximum}</i></li>
+  <li>If only a single value is given, it is the same as {value,value} and gives no variation</li>
+  <li>To set the time interval between successive randomization event, use the form <i>{min,max,millisecond}</i> </li>
+  <li>To invoke randomization event when particle bounce back (i.e. using Bounce@ or Bounce2@), use the form <i>{min,max,<b>b</b>} </i>, where b is just a letter b. </li>
+  <li>Use the form <i>{min,max,b,count}</i> to enable transition from <i>min</i> to <i>max</i> in <i>count</i> number of bounce.</li>
+  <li>To change from min to max with respect to audio data (i.e. using with Sound@), use <i>{min,max,o_a,coefficient}</i> or <i>{min,max,o_m,coefficient}</i>. o_a adds volume data to coefficient while o_m use multiplication.</li>
+  <li>To divert particles to one of two predefined coordinates/types, use the form: <i>{value1,value2,axis,lower_limit,upper_limit}</i>, where axis is one of the letter x,y or z. When the x-coordinate of particle approaches lower_limit, value will set to value1. If it approaches upper_limit, value will set to value2.</li>
+  </ul>
+  </li>
+  <li>ConstVarName#
+  <ul><li>A parameter that will not change value over time.</li>
+  </ul>
+  </li>
+  <li>ConstVarVal#
+  <ul><li>The value for ConstVarName#. It can be number, text or check box state.</li>
+  <li>For text data, please enclose in double quotes</li>
+  <li>For check box state, 0= unchecked, 1=checked </li>
+  </ul>
+  </li>
+  
+</ul>
+<h3>Multi-stage variation</h3>
+<p>
+The above settings allow a one-stage transition from an initial value to a final value. However, it is also possible to have 2-stage and 3-stage transition.
+<p>
+<p>
+To have 2-stage transition,
+<ol>
+<li>Place the same filter name into VarName1 and VarName2</li>
+<li>Set stage 1 starting time using VarTime1</li>
+<li>Set stage 2 starting time (same as stage 1 ending time) using VarTime2</li>
+<li>Set stage 1 initial and final value pair at VarVal1</li>
+<li>Set stage 2 initial and final value pair at VarVal2</li>
+</ol>
+</p>
+<p>
+To give 3-stage transition,
+<ol>
+<li>Enter filter name to VarName1</li>
+<li>Set starts of stage 1 with VarTime1</li>
+<li>Set starts of stage 2 with <font color="orange">VarName2</font>, value in milliseconds</li>
+<li>Set starts of stage 3 with VarTime2</li>
+<li>Set stage 1 value pair in VarVal1. The latter value will be the starting value of stage 2</li>
+<li>Set the value at the end of stage 2, and the ending value of stage 3, in VarVal2</li>
+</ol>
+</p>
+</p>
+<hr>
+<h2>Filter(For_Monochrome)</h2>
+<p>
+A specialized facility for using the Monochromatic effect. It is different from Filter(in above section) that it keeps changing values on its own.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>ApplyToBody
+    <ul>
+	  <li>0: Do not apply to particle bodies</li>
+	  <li>1: Apply to particle bodies</li>
+	 </ul>
+  </li>
+  <li>ApplyToPath
+    <ul>
+	  <li>0: Do not apply to particle tails</li>
+	  <li>1: Apply to particle tails</li>
+	 </ul>
+  </li>
+  <li>RelativeTime
+    <ul>
+	  <li>0: treat object start as zero time</li>
+	  <li>1: treat particle creation as zero time</li>
+	</ul>
+  </li>
+  <li>Priority
+    <ul><li>The order of applying this effect relative to other Filter@particle_ri_ver3 in the same object.</li>
+	<li>With reference to Fig08A and Fig08B, the first Filter@particle_ri_ver3 casts the Noise effect, the second one casts Glow, then Filter(For_Monochrome). Yet, since the Priority value is 1, it actually casts filters in the order: Monochromatic → Noise → Glow. If it were set to 2, the order would be: Noise → Monochromatic → Glow</li>
+	</ul>
+  </li>
+
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Keep luminance
+  <ul><li>Checked: Maintain original perceivable brightness variation</li>
+  <li>Unchecked: Just a simple flood fill</li>
+  </ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Strength
+    <ul><li>Same as the Strength slider in Monochromatic</li></ul>
+  </li>
+  <li>StTime
+    <ul><li>The time when color starts to change, in milliseconds.</li></ul>
+  </li>
+  <li>ChangeIntvl
+    <ul><li>The total duration of color change, in milliseconds.</li></ul>
+  </li>
+  <li>KeepIntvl
+    <ul><li>The interval between the end of a change and the start of another round of change.</li></ul>
+  </li>
+  <li>EndTime
+    <ul><li>The time after which color stop changing</li></ul>
+  </li>
+  <li>Pattern0~2
+    <ul>
+	  <li>0: The color of a particle is fixed on emission and unchanged through out survival time</li>
+	  <li>1: Color of a particle will change in order after emission. </li>
+	  <li>2: Color variation keep changing.</li>
+	</ul>
+  </li>
+  <li>RandColor0~6
+    <ul>
+	  <li>Define how color should be selected</li>
+	  <li>0: color change in the order as defined in VarColor0~4</li>
+	  <li>1: randomly select a color defined in VarColor0~4</li>
+	  <li>2: Similar to 0, but add a bit random color shades</li>
+	  <li>3: Similar to 1, but add a bit random color shades</li>
+	  <li>4: Similar to 1, but add whiteness variation according to Color4W%B%</li>
+	  <li>5: Color list is randomly generated</li>
+	  <li>6: particles' base color is randomly chosen</li>
+	</ul>
+  </li>
+  <li>VarColor0~4
+    <ul><li>A list of color hex-code for use when RandColor0~6 is 0~4</li></ul>
+  </li>
+  <li>Color4W%B%
+    <ul><li>{White%,Black%}</li></ul>
+  </li>
+  <li>Brightness
+    <ul><li>0 for almost black, 200 for almost white</li></ul>
+  </li>
+  <li>Rand Intvl
+    <ul><li>The interval between successive random number change. In milliseconds.</li></ul>
+  </li>
+  <li>Rand Refel
+    <ul><li>Randomize color on bounce when using with Bounce@ or Bounce2@</li></ul>
+  </li>
+  <li>StColor
+    <ul>
+	  <li>The initial color of particle</li>
+	  <li>0: undefined</li>
+	  <li>r: random</li>
+	</ul>
+  </li>
+  <li>EndColor
+    <ul>
+	  <li>FInal color of particle</li>
+	  <li>0: undefined</li>
+	  <li>r: random</li>
+	</ul>
+  </li>
+  <li>Seed
+    <ul><li>For random number generator use</li></ul>
+  </li>
+  <li>SampleColor
+    <ul><li>A color hex code</li></ul>
+  </li>
+  
+</ul>
+</p>
+
+</body>
+</html>
