@@ -1,0 +1,320 @@
+<html>
+
+<head>
+<title>09: FineAdjustment and Timing</title>
+</head>
+
+<body>
+<figure>
+<img src="09A.png">
+<figcaption>Fig09A: setting panel for FineAdjustment@particle_ri_ver3</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="09B.png">
+<figcaption>Fig09B: setting panel for Timing@particle_ri_ver3</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="09C.png">
+<figcaption>Fig09C: setting panel for Timing2@particle_ri_ver3</figcaption>
+</figure>
+
+
+<h2>Fine Adjustment</h2>
+<p>
+Let certain parameters to be randomized within a user-defined range.
+</p>
+<p>
+Values can be positive or negative, which leads to different range calculation method.
+<ul>
+Positive values
+<li>Assuming the base parameter value is x, and the value in FineAdjustment is v:
+</li>
+<li>Range= x*v÷100
+</li>
+<li>Upper bound= x+Range
+</li>
+<li>Lower bound= x-Range
+</li>
+</ul>
+
+<ul>
+Negative values
+<li>Assuming the base parameter value is x, and the value in FineAdjustment is v, where v is negative:
+</li>
+<li>Range= -2*v
+</li>
+<li>Upper bound= x-v
+</li>
+<li>Lower bound= x+v
+</li>
+</ul>
+
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Speed
+  <ul><li>Randomization range for output speed</li></ul>
+  </li>
+  <li>Accel
+  <ul><li>Randomization range for particle acceleration</li></ul>
+  </li>
+  <li>RotSpeed
+  <ul><li>Randomization range for particle rotation speed. Consists of as set of 3 values for the 3 axis. If only a single value is given, the same value will be applied to all axis</li></ul>
+  </li>
+  <li>Alpha
+  <ul><li>Randomization range for transparency: {initial_transparency,final_transparency}</li></ul>
+  </li>
+  <li>Zoom
+  <ul><li>Randomization range for magnification: {initial_mag,final_mag}</li></ul>
+  </li>
+  <li>Gravity
+  <ul><li>A set of 3 values for the 3 axis: {x_gravity,y_gravity,z_gravity}</li></ul>
+  </li>
+  <li>Freq
+  <ul><li>Randomization range for output frequency</li></ul>
+  </li>
+  <li>SurvTime
+  <ul><li>Randomization range for survival time of each particle </li></ul>
+  </li>
+  <li>Wind
+  <ul>
+    <li>Add irregularity to wind power. To be used with Wind@particle_ri_ver3 in another object.</li>
+  </ul>
+  </li>
+  <li>Funnel-Ring
+  <ul>
+    <li>Randomize funnel and ring count when using with Funnel@particle_ri_ver3
+	</li>
+	<li>Consists of a pair of number: {funnel_count,ring_count}
+	</li>
+	<li>If only a single value is given, it will be the same as {value,value}
+	</li>
+  </ul>
+  </li>
+  <li>MonochromeFilter
+  <ul>
+    <li>Randomize parameters in Filter(For_monochrome)@particle_ri_ver3</li>
+	<li>{StTime,ChangeIntvl,KeepIntvl,EndTime}</li>
+	<li>Please read 08_Filter and Filter(For_monochrome).html for details</li>
+  </ul>
+  </li>
+ 
+</ul>
+</p>
+<hr>
+<h2>Timing</h2>
+<p>Add temporal changes to <b>initial value</b> of various parameters. Provides unidirectional change and repetitive change. Time zero counts from object starts.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>
+  1Speed
+  <ul><li>Particle output speed after temporal change</li></ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 1Speed)</font>
+  <ul><li>Fluctuation period(type1~3) or transition time(type4~5) </li></ul>
+</li>
+
+<li>
+  2Accel
+  <ul><li>Particle acceleration after temporal change</li></ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 2Accel)</font>
+  <ul><li>Fluctuation period(type1~3) or transition time(type4~5) </li></ul>
+</li>
+</ul>
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>
+  3_4Facing
+  <ul>
+    <li>Particle output direction on the xy-plane and along depth after temporal change.</li>
+    <li>Input format: <i>{xy_direction,z_direction}</i> </li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  IndvlPeriod <font color="#CCCCCC">(for 3_4Facing)</font>
+  <ul>
+    <li>Fluctuation period for 3_4Facing in milliseconds</li>
+    <li>Input format: <i>{xy_period,z_period}</i></li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  5_6Spread
+  <ul>
+    <li>Particle spread angle on xy-plane and along depth after temporal change</li>
+    <li>Input format: <i>{xy_spread,z_spread}</i></li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  IndvlPeriod <font color="#CCCCCC">(for 5_6Spread)</font>
+  <ul>
+    <li>Fluctuation period for 5_6Spread in milliseconds </li>
+    <li>Input format: <i>{period_for_xy_spread,period_for_z_spread}</i></li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  7_8_9RotSpd
+  <ul>
+    <li>Rotation speed along x,y and z axis after temporal change</li>
+    <li>Input format: <i>{speed_x,speed_y,speed_z}</i></li>
+    <li>A single value is equivalent to <i>{value,value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  xyzPeriod <font color="#CCCCCC">(for 7_8_9RotSpd)</font>
+  <ul>
+    <li>Fluctuation period for rotation speed. </li>
+    <li>Input format: <i>{period_x,period_y,period_z}</i></li>
+    <li>A single value is equivalent to <i>{value,value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  10_Alpha
+  <ul>
+    <li>Initial and final transparency values after temporal change</li>
+    <li>Input format: <i>{initial_transparency,final_transparency}</i></li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 10_Alpha)</font>
+  <ul>
+    <li>Fluctuation period for transparency in milliseconds. </li>
+    <li>Both initial and final transparency share the same period value.</li>
+  </ul>
+</li>
+
+<li>
+  11_Zoom
+  <ul>
+    <li>Initial and final magnification values after temporal change</li>
+    <li>Input format: <i>{initial_magnification,final_magnification}</i></li>
+    <li>A single value is equivalent to <i>{value,value}</i></li>
+  </ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 11_Zoom)</font>
+  <ul>
+    <li>Fluctuation period for magnification in milliseconds </li>
+    <li>Both initial and final magnification share the same period value.</li>
+  </ul>
+</li>
+
+<li>
+  12SurvTime
+  <ul><li>Survival time after temporal change.</li></ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 12SurvTime)</font>
+  <ul><li>Fluctuation period for survival time in milliseconds. </li></ul>
+</li>
+
+<li>
+  13_Freq
+  <ul><li>Particle emission frequency after temporal change</li></ul>
+</li>
+
+<li>
+  Period <font color="#CCCCCC">(for 13_Freq)</font>
+  <ul>
+    <li>Fluctuation period for frequency in milliseconds.</li>
+    <li>Assume type 0(see below) if it has zero value.</li>
+  </ul>
+</li>
+<li>
+  Type0~5
+  <ul>
+    <li>Set the style of change for each parameter.</li>
+    <li>Input format: <i>{speed_type,accel_type,xyFacing_type,zFacing_type,xySpread_type,zSpread_type,x-angularspeed_type,y-angularspeed_type,z-angularspeed_type,alpha_type,zoom_type,surviveTime_type,freq_type}</i></li>
+    <li>0: No time-dependent change</li>
+    <li>1: Gradual chnage over the life of the object</li>
+    <li>2: Repetitive change according to Period setting. Jump back to initial value at start of each cycle.◢◢◢</li>
+    <li>3: Repetitive change in gardual changing cycle. ◢◣◢◣◢◣</li>
+    <li>4: The first period keep the base value unchanged. Gradually change to setting value by object's end. ___◢</li>
+    <li>5: complete transition in the first period, than keep the vale. ◢￣￣</li>
+    <li>6: inputted value is interpreted as a range instead of a final point value. Only applicatable to 3_4Facing.</li>
+  </ul>
+</li>
+
+</ul>
+</p>
+<h2>Timing2</h2>
+<p>Allows object-time-based temporal setting using a separate object on layer N-1. Multiple Timing2 can be attached to the same object. ParticleRender@ should not be attached to the same object.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Count
+  <ul><li>Number of control anchors on graph. Max 10 achors per Timing2 attached.</li></ul>
+</li>
+<li>Parameter
+  <ul>
+    <li> The parameter to be given temporal variation: </li>
+    <li> 1: Particle output speed </li>
+    <li> 2: Particle acceleration</li>
+    <li> 3: Output direction</li>
+    <li> 4: z-output direction</li>
+    <li> 5: Spread angle</li>
+    <li> 6: z-Spread angle</li>
+    <li> 7: x-Rotation speed</li>
+    <li> 8: y-Rotation speed</li>
+    <li> 9: z-Rotation speed</li>
+    <li> 10: Initial transparency</li>
+    <li> 11: Final transparency</li>
+    <li> 12: Initial magnification</li>
+    <li> 13: Final magnification</li>
+    <li> 14: Output frequency</li>
+    <li> 15: Survival time</li>
+  </ul>
+</li>
+<li>Scale
+  <ul><li>Increase the value on the vertical axis of the graph, i.e. stronger effect</li></ul>
+</li>
+<li>Graph
+  <ul>
+    <li>Show variation graph in the order of attached Timing2@</li>
+    <li>The graph display function is effective for the last attached Timing2@ only</li>
+  </ul>
+</li>
+
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>pos
+  <ul><li>Position of control anchor(s) in numbers</li></ul>
+</li>
+<li>Link
+  <ul><li>Link two consecustive Timing2@ controlling the same parameter. Use this to gives more than 10 control anchors per graph.</li></ul>
+</li>
+
+</ul>
+</p>
+</body>
+</html>
