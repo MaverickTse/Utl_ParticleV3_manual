@@ -1,0 +1,225 @@
+<html>
+
+<head>
+<title>10: Bounce and Bounce2</title>
+</head>
+
+<body>
+<figure>
+<img src="10A.png">
+<figcaption>Fig10A: Particles bounce around inside a boxed area using Bounce@particle_ri_ver3. "Show domain" is checked to help visualize the boxed area.</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="10B.png">
+<figcaption>Fig10B: Particles bouncing off a plate (on layer 2) using Bounce2@particle_ri_ver3.The particle object has been excluded from Camera control. Particle tail given by Trajectory@ to help illustrate the incident and emergence path.</figcaption>
+</figure>
+<hr>
+<figure>
+<img src="10C.png">
+<figcaption>Fig10C: Similar to Fig10B except that the particle object is under Camera control with Shadow effect.</figcaption>
+</figure>
+<hr>
+
+<h2>Bounce</h2>
+<p>Make particles to bounce upon hitting some predefined surface. Does not support changing the reflection surface over time.</p>
+
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>xType
+  <ul><li>Set the properties of vertical reflection surfaces locate at x=v1 and x=v2 (where v1 &lt v2)</li></ul>
+  </li>
+  <li>yType</li>
+  <ul><li>Set the properties of horizontal reflection surfaces locate at y=v1 and y=v2 (where v1 &lt v2)</li></ul>
+  <li>zType</li>
+  <ul><li>Set the properties of vertical reflection surfaces locate at z=v1 and z=v2 (where v1 &lt v2)</li></ul>
+
+  <li>For xType, yType and zType:</li>
+  <ul>
+    <li>1: reflection surfaces at v1 and v2 are both enabled</li>
+	<li>2: Only reflection surface at v1 is enabled</li>
+	<li>3: Only reflection surface at v2 is enabled</li>
+	<li>4: disable reflection surface at both v1 and v2</li>
+  </ul>
+
+  <li>SphereType</li>
+  <ul>
+    <li>Set the properties of spherical reflection surfaces</li>
+	<li>1: reflection surface is a complete sphere</li>
+	<li>2: reflection surface is a hemisphere</li>
+	<li>3: disable reflection surface</li>
+  </ul>  
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+<ul>
+ <li>Show domain
+  <ul><li>Visualize reflection surface(s)</li></ul>
+  </li>
+</ul>
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>xRange
+  <ul>
+    <li>Reflection planes at x=v1,v2 (v1 &lt v2)</li>
+	<li>Input format: <i>{v1,v2}</i> </li>
+	<li>If only a single value is given, plane at v1 if v &lt 0, at v2 otherwise.</li>
+  </ul>
+  </li>
+    <li>yRange
+  <ul>
+    <li>Reflection planes at y=v1,v2 (v1 &lt v2)</li>
+	<li>Input format: <i>{v1,v2}</i> </li>
+	<li>If only a single value is given, plane at v1 if v &lt 0, at v2 otherwise.</li>
+  </ul>
+  </li>
+    <li>zRange
+  <ul>
+    <li>Reflection planes at z=v1,v2 (v1 &lt v2)</li>
+	<li>Input format: <i>{v1,v2}</i> </li>
+	<li>If only a single value is given, plane at v1 if v &lt 0, at v2 otherwise.</li>
+  </ul>
+    </li>
+	<li>xyzCoeff
+  <ul>
+    <li>Speed coefficient determining the speed of particle after reflection. </li>
+	<li>1: no speed change; 2: speed is doubled after reflection; 0.5: speed is halved after reflection </li>
+	<li>Input format: <i>{Coefficient_for_X,Coefficient_for_Y,Coefficient_for_Z}</i></li>
+  </ul>
+  </li>
+    <li>SpherePos
+  <ul><li>Numerical center coordinate for spherical and hemisphere reflection plane.</li>
+  <li>This can be set visually via anchor points instead.</li>
+  </ul>
+  </li>
+    <li>SphereRot
+  <ul>
+    <li>Rotation angle of hemisphere</li>
+	<li>Input format: <i>{rotation_along_y,rotation_along_z}</i></li>
+	<li>Giving a single number is the same as {0,rotation_along_z}</li>
+  </ul>
+  </li>
+  <li>Radius
+  <ul><li>Size of reflection sphere and hemisphere</li>
+  </ul>
+  </li>
+    <li>SphereCoeff
+  <ul><li>Speed coefficient for bouncing off a sphere or hemisphere</li>
+  </ul>
+  </li>
+    <li>Irregularity
+  <ul><li>Add randomness to reflection direction and speed coefficients</li></ul>
+  </li>
+    <li>Probability
+  <ul><li>When Irregularity is enabled, the chance that a particle will have such irregularity.</li></ul>
+  </li>
+    <li>ReflectInside
+  <ul><li>When checked, each reflection plane will have infinite area.</li>
+  <li>When unchecked, only the reflection plane as seen by "Show domain". In other words, a reflection plane is trimmed when intersect with other reflection plane.</li>
+  <li>No effect on spherical and hemisphere reflection surface.</li>
+  </ul>
+  </li>
+    <li>TypeSwitchTime
+  <ul><li>Changing interval for each Type.</li>
+  <li>Value in milliseconds.</li>
+  <li>No effect if zero.</li>
+  </ul>
+  </li>
+    <li>RelativeTime
+  <ul><li>Set definition of time-zero for TypeSwitchTime. If checked, time based on each particle.</li></ul>
+  </li>
+    <li>Re-Type
+  <ul><li>The final Type after TypeSwitchTime has lapsed.</li>
+  <li>Input format: <i>{type for z,type for y,type for z,sphere type} </i> </li>
+  <li>See sliders description for details in the types.</li>
+  </ul>
+  </li>
+    <li>For emission 5
+  <ul><li>When using with Emission@ and set to type 5, treat the boxed area as reflection surface.</li></ul>
+  </li>
+  <li>Filter1Link0~2 </li>
+  <ul>
+    <li>Set changes to Filter@ (VarVal1) or Filter(For_monochrome)@ matching the time of reflection. </li>
+	<li>For example, if <font color="blue">Filter@ (Blur) → Filter@ (Color shift) → Filter(For_monochrome)</font> is attached, and I want to change the Color shift behaviour upon reflection, input <font color="red">{0、1、0、0、0、0、0、0、0、0} </font>  </li>
+	<li>Valid values are 0,1 and 2 </li>
+	<li>0: Do not change on reflection </li>
+	<li>1: Starts changing upon first reflection. No change if no reflection occurs </li>
+	<li>2: Transition finish upon first reflection </li>
+  </ul>
+</ul>
+</p>
+<h2>Bounce2</h2>
+<p>
+Make particles bounce off from surface(s) defined in other layers.
+Temporal changes in size and transparency of the reflection surfaces are not supported.
+Only temporal changes in X, Y, Z, SpinX, SpinY and SpinZ of the reflection surface are supported.
+The object defining the surface must have the same duration as the particle object.
+Do not attach the build-in effect "Emission" to the reflection surface!
+</p>
+
+<h3>Check box</h3>
+<p>
+Support object time change
+<ul>
+  <li>
+  When checked, temporal change of the reflection surfaces (position and spin) will be taken into account. Processing will get very heavy if enabled.
+  </li>
+</ul>
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Layer  </li>
+  <ul>
+    <li>Set the layers defining reflection surfaces.</li>
+	<li>{layerID[1],layerID[2],...,layerID[n]}</li>
+  </ul>
+  <li>BounceCoeff  </li>
+  <ul>
+    <li>Speed coefficients for each surface.</li>
+	<li>{Coeff for surface 1, Coeff for surface 2,..., Coeff for surface N}</li>
+	<li>Assume all 0.9 if omitted.</li>
+  </ul>
+  <li>Irregularity0~1  </li>
+  <ul>
+    <li>Decide if randomness should be introduced when bouncing off each surface. </li>
+	<li>{surface 1 ON/OFF, surface 2 ON/OFF,..., surface N ON/OFF}</li>
+	<li>0: No randomness; 1: Randomize</li>
+	<li>Assume 0 if omitted.</li>
+  </ul>
+  <li>Probability  </li>
+  <ul>
+    <li>The chance of introducing randomness when bouncing off each surface. </li>
+	<li>{P(surface 1),P(surface 2),...,P(surface N)}</li>
+	<li>0: No randomness at all; 0.5: Half the particles will be randomized; 1: All randomized</li>
+  </ul>
+  <li>RevDomain0~1  </li>
+  <ul>
+    <li>Invert surfaces' reflecting area. If previously an opaque area is reflecting particles, area outside this region will be reflecting only when set to 1.</li>
+	<li>{surface 1 ON/OFF, surface 2 ON/OFF,..., surface N ON/OFF}</li>
+	<li>Assume 0 if omitted.</li>
+  </ul>
+  <li>Type0~1  </li>
+  <ul>
+    <li>Enable (1) or disable (0) a surface </li>
+	<li>{surface 1 ON/OFF, surface 2 ON/OFF,..., surface N ON/OFF}</li>
+	<li>Assume 1 if omitted.</li>
+  </ul>
+  <li>OverTime0~1  </li>
+  <ul>
+    <li>When using with Bounce@, set the surface type after TypeSwitchTime</li>
+	<li>{surface 1 type,surface 2 type, ... ,surface N type} </li>
+	<li> Assume 1 if omitted</li>
+	<li> No effect if Bounce@ is not attached</li>
+  </ul>
+  
+</ul>
+</p>
+
+</body>
+</html>
