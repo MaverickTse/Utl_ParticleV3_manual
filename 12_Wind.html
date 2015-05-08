@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<title>12: Wind</title>
+</head>
+
+<body>
+<figure>
+<img src="12A.png">
+<figcaption>Fig12A: Setting up a Wind@ object with a wind source originating from y=-90. One extra anchor for x and y wind power curve. x curves up (Fig12B), y curves down, z remains a straight line at zero(not shown).</figcaption>
+</figure>
+
+<figure>
+<img src="12B.png">
+<figcaption>Fig12B: Effect of Wind object (Layer 1) on particle (Layer 2). The particle object has been set with a spread of zero, and attached Trajectory@ for illustrating particles' movement. The wind power curve is shown in Fig12A.</figcaption>
+</figure>
+
+<h2>Wind</h2>
+<p>
+Simulate the effect of wind. This effect should not be attached to the object with ParticleRender@particle_ri_ver3 on it. Layer ID of the wind object should be smaller than the particle object. The Wind object and the particle object below should have the same duration.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+  <li>ExCtrlPt
+  <ul><li>Add extra control anchor(s) to the wind power graph. There are already 2 anchors by default in order to define a straight line. A maximum of 10 extra anchors can be added.</li></ul>
+  </li>
+  <li>Vec_1x2y3z</li>
+  <ul><li>Define which wind power vector to set.</li>
+  <li>1: x component (horizontal force)</li>
+  <li>2: y component (vertical force)</li>
+  <li>3: z component (depth)</li>
+  </ul>
+  <li>Scale</li>
+  <ul><li>A multiplier to adjust overall wind power.</li></ul>
+  <li>Graph</li>
+  <ul><li>If multiple Wind@ has been attached (Fig12A), only the "Graph" option for the last Wind@ will be effective.</li>
+  <li>The number is the n'th Wind@ on this object. For example, if the first Wind@ sets X (Vec_1x2y3z=1), 2nd one sets Y (Vec_1x2y3z=2) and the last one sets Z(Vec_1x2y3z=3). Then on the one that sets Z, setting Graph=1 will display the power graph for X-component, Graph=2 shows the Y component, Graph=3 presents the Z-component. </li>
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+Show graph: Check to display the wind power graph, uncheck to hide it. When there are multiple Wind@ effect (Fig12A), checking any one of them will display the graph. <font color="red">In the absence of particle object in the layer below, this graph cannot be hidden.</font>
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>pos
+  <ul><li>Coordinates for control anchors.</li></ul>
+  </li>
+  <li>Origin
+  <ul><li>If left empty, wind starts from infinity. Enter a value to have wind start from particular location (See Fig12A for example). The origin location is visualized as a thick blue line on the screen.</li></ul>
+  </li>
+	<li>DistCoeff
+  <ul><li>Wind power decay coefficient. A larger value allows wind to travel further away from origin. A small value cause wind effect to disappear within a short distance.</li>
+  </ul>
+  </li>
+    <li>AirResistance
+  <ul><li>A factor for adjusting influence of wind on particle wrt. particle speed.</li>
+  <li>A small value cause little difference among all particle speed. A large value cause more difference among fast and slow particles.</li>
+  </ul>
+  </li>
+    <li>Link
+  <ul><li>Link subsequent Wind@ with settings in the same force component. Use this when 10 more anchors is not enough.</li></ul>
+  </li>
+
+</ul>
+</p>
+</body>
+</html>
