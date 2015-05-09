@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<title>15: Trajectory</title>
+</head>
+
+<body>
+<figure>
+<img src="15.png">
+<figcaption>Fig15: Adding tails to particles. This particle object is tracking another object using Emission@ type 1 and the path forms a loop in the center of the screen. Particle is colored yellow while the tail is colored green.</figcaption>
+</figure>
+
+<h2>Trajectory / Tail</h2>
+<p>
+Attach a tail of some sort to each particle.
+</p>
+
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Vanish</li>
+  <ul>
+  <li>Positive number: The duration from particle's survival time to the disappearance of the tail. </li>
+  <li>Negative number:  Tail vanish when particle's survival time expires.</li>
+  </ul>
+
+<li>Tail</li>
+  <ul>
+  <li>The number of shapes used to make up a tail. </li>
+  <li>The length of a tail is given by (Tail-1)*Intvl </li>
+  <li>Intvl is set in the Setting dialog. </li>
+  </ul>
+
+
+<li>MidPtCount</li>
+  <ul>
+  <li>The number of particles to be displayed on the path yet to be run through. </li>
+  <li>Effective only when "Show MidPt" in the dialog is checked. </li>
+  </ul>
+
+
+<li>Type</li>
+  <ul>
+  <li>0: the tail is where a particle has passed through. </li>
+  <li>1: Join particle emission origins with straight lines. </li>
+  <li>2: Disable this effect. </li>
+  </ul>
+  
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Face camera: when using with Camera control and if checked, the shapes that make up the tail will automatically turn and face towards the camera.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Shape
+  <ul><li>The shape that makes up the tail.</li>
+  <li>Assume the base object shape if left empty. </li>
+  </ul>
+  </li>
+  <li>Color
+  <ul><li>Color of the tail.</li>
+  <li>No effect if the "Shape" field above is not defined. </li>
+  <li>Enter <i>random</i> to randomize color for each tail. </li>
+  </ul>
+  </li>
+	<li>Size
+  <ul><li>Width of tail.</li>
+  <li>Same meaning as Zoom% if "Shape" field is left empty. </li>
+  </ul>
+  </li>
+    <li>TailAlpha
+  <ul><li>A transparency factor for the tail that is to be multiplied with particles' alpha value.</li>
+  </ul>
+  </li>
+    <li>TailZoom
+  <ul><li>Determine the size of the tail tip.</li></ul>
+  </li>
+    <li>Intvl
+  <ul><li>The distance between successive shapes that make up the tail.</li></ul>
+  </li>
+    <li>DriftWidth
+  <ul><li>Add a little offset from the original tail location</li></ul>
+  </li>
+    <li>Gravity for type 0
+  <ul><li>Enable gravity, Wind@ and FluxField to act on the tail when Type slider is zero.</li></ul>
+  </li>
+    <li>GravForPath
+  <ul><li>The gravity to be applied to tails.</li>
+  <li>{GravityX,GravityY,GravityZ} </li>
+  <li>A single value sets GravityY only. </li>
+  <li>Leave this blank or <i>{nil,nil,nil}</i> to use the gravity settings from ParticleRender@ and Depth_n'Grid@ </li>
+  </ul>
+  </li>
+    <li>Show MidPt
+  <ul><li>Show particles on path that has yet to be passed.</li></ul>
+  </li>
+    <li>MidPtAlpha
+  <ul><li>Alpha value for future path when "Show MidPt" is checked.</li></ul>
+  </li>  
+</ul>
+</p>
+</body>
+</html>
