@@ -1,61 +1,73 @@
 <html>
 
 <head>
-<title>14: FluxField</title>
+<title>17: Join particles with straight lines and optionally fill the enclosed area with color.</title>
 </head>
 
 <body>
 <figure>
-<img src="14A.png">
-<figcaption>Fig14A: Effect of applying FluxField and enabling HeavyProcess. Red (Layer1): Particles going down in a straight line in the absence of FluxField. Green (Layer2): FluxField enabled with settings shown in the dialog at center. The tails became curry. Blue (Layer 3): Almost the same with Green particles except that HeavyProcess is enabled. Notice the tails' bending is more smooth but bend less. All seed values for FluxFiled and ParticleRender are set to -1. Colors other than pure red, green and blue are due to overlapping particles.</figcaption>
+<img src="17A.png">
+<figcaption>Fig17A: Basic use of Mesh@. The base object is a green hexagon. Emitting from a line going straight downwards.</figcaption>
 </figure>
 
 <figure>
-<img src="14B.png">
-<figcaption>Fig14B: Effect of changing DomainIntvl. Green (layer 1): Default setting at DomainIntvl=100. Red (layer 2): DomainIntvl=20. Notice the red tails bend more frequently than green. All seed values set to -1. Yellow color is a result of two overlapping particles.</figcaption>
+<img src="17B.png">
+<figcaption>Fig17B: A more refined example using filled triangle under certain size. The fill color is chosen randomly from <i>Color</i> and <i>MultiAreaColor</i>. Floodfill is enabled via <i>LineToSurface</i> check box. Area threshold is set by <i>AreaFade</i>.</figcaption>
 </figure>
 
-<h2>FluxField</h2>
+<h2>Mesh</h2>
 <p>
-Generate an invisible force field with crest and trough. Adds spatial irregularity like Wind@ and Style@.
+Join particles with straight lines.
+</p>
+<h3>Slider</h3>
+<p>
+Transparency: transparent of linking lines and faces.
 </p>
 
 <h3>Check box</h3>
 <p>
-has Depth: Applies field to the z-axis direction. Default only applies to x-y plane.
+3-Dimensional: Make the mesh looks 3D. Increase joining line count when enabled. If particle has z-movement, the effect will do 3D processing automatically even without this check box ticked.
 </p>
 
 <h3>Setting dialog</h3>
 <p>
 <ul>
-  <li>Strength
-  <ul><li>Maximum amplitude of field fluctuation. Actual amplitude is randomized within this range.</li></ul>
+  <li>Color
+  <ul><li>Color for line and face.</li></ul>
   </li>
-  <li>StTime
-  <ul><li>A delay time after which the force field starts to act on particles. In milliseconds.</li></ul>
+  <li>Shape
+  <ul><li>The shape that make up the joining lines. However, the shape can hardly be identified when Intvl is 1.</li></ul>
   </li>
-	<li>Change slowly
-  <ul><li>When StTime is set, the force field is applied gradually from time zero to StTime. Otherwise, a full-strength force field is applied from the start.</li>
+	<li>LineWidth
+  <ul><li>Width of lines linking particles.</li>
   </ul>
   </li>
-    <li>RelativeChange
-  <ul><li>When checked, time zero starts from particle emission. Otherwise count from object start.</li>
+    <li>Intvl
+  <ul><li>Separation among successive shapes in a joining line.</li>
   </ul>
   </li>
-    <li>DomainIntvl
-  <ul><li>Distance for half-wavelength. Smaller value cause more frequent bending. See Fig14B for example.</li></ul>
+    <li>Split concurrent
+  <ul><li>Only links particles that are emitted at the same moment. To be used with the concurrent option in ParticleRender.</li></ul>
   </li>
-    <li>ChangeStrbyTime
-  <ul><li>Changing the strength of the force field for every fixed interval. Value in milliseconds.Use 0 for constant field.</li></ul>
+    <li>LineToSurface
+  <ul><li>Fill enclosed area instead of drawing lines only. The area are all triangle. See Fig17B for example.</li></ul>
   </li>
-    <li>IntvlFluxField
-  <ul><li>When checked, every particle use its own field. When unchecked, all particles use the same common field.</li></ul>
+    <li>AreaFade
+  <ul>
+  <li>Applies fade-out or fade-in to filled faces.</li>
+  <li>The value needs to be &gt 2000 in order to have any visible effect. </li>
+  <li>+ve value: A triangle fade-out as it approaches the size as defined by this value. The triangle disappear completely when its area exceeds this value.</li>
+  <li>-ve value: A triangle fade-in as it approaches the size as defined by this value. The triangle is opaque when its area exceeds this value. </li>
+  </ul>
   </li>
-    <li>Seed
-  <ul><li>Seed number for random number generator. Independent from Seed in ParticleRender.</li></ul>
+    <li>FadeAlpha
+  <ul><li>Final transparency of a filled triangle.</li></ul>
   </li>
-    <li>HeavyProcess
-  <ul><li>Applies more accurate but heavier calculation. See Fig14A for example.</li></ul>
+    <li>MultiAreaColor
+  <ul><li>A list of flood fill color candidates. The filling color is taken from this field and the color set in the <i>Color</i> field. See Fig17B for reference.</li></ul>
+  </li>
+  <li>Sync alpha
+  <ul><li>Multiply the alpha values from ParticleRender with the transparency setting in this effect.</li></ul>
   </li>
 
 </ul>
