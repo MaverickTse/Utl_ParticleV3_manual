@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>14: FluxField</title>
+</head>
+
+<body>
+<figure>
+<img src="14A.png">
+<figcaption>Fig14A: Effect of applying FluxField and enabling HeavyProcess. Red (Layer1): Particles going down in a straight line in the absence of FluxField. Green (Layer2): FluxField enabled with settings shown in the dialog at center. The tails became curry. Blue (Layer 3): Almost the same with Green particles except that HeavyProcess is enabled. Notice the tails' bending is more smooth but bend less. All seed values for FluxFiled and ParticleRender are set to -1. Colors other than pure red, green and blue are due to overlapping particles.</figcaption>
+</figure>
+
+<figure>
+<img src="14B.png">
+<figcaption>Fig14B: Effect of changing DomainIntvl. Green (layer 1): Default setting at DomainIntvl=100. Red (layer 2): DomainIntvl=20. Notice the red tails bend more frequently than green. All seed values set to -1. Yellow color is a result of two overlapping particles.</figcaption>
+</figure>
+
+<h2>FluxField</h2>
+<p>
+Generate an invisible force field with crest and trough. Adds spatial irregularity like Wind@ and Style@.
+</p>
+
+<h3>Check box</h3>
+<p>
+has Depth: Applies field to the z-axis direction. Default only applies to x-y plane.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+  <li>Strength
+  <ul><li>Maximum amplitude of field fluctuation. Actual amplitude is randomized within this range.</li></ul>
+  </li>
+  <li>StTime
+  <ul><li>A delay time after which the force field starts to act on particles. In milliseconds.</li></ul>
+  </li>
+	<li>Change slowly
+  <ul><li>When StTime is set, the force field is applied gradually from time zero to StTime. Otherwise, a full-strength force field is applied from the start.</li>
+  </ul>
+  </li>
+    <li>RelativeChange
+  <ul><li>When checked, time zero starts from particle emission. Otherwise count from object start.</li>
+  </ul>
+  </li>
+    <li>DomainIntvl
+  <ul><li>Distance for half-wavelength. Smaller value cause more frequent bending. See Fig14B for example.</li></ul>
+  </li>
+    <li>ChangeStrbyTime
+  <ul><li>Changing the strength of the force field for every fixed interval. Value in milliseconds.Use 0 for constant field.</li></ul>
+  </li>
+    <li>IntvlFluxField
+  <ul><li>When checked, every particle use its own field. When unchecked, all particles use the same common field.</li></ul>
+  </li>
+    <li>Seed
+  <ul><li>Seed number for random number generator. Independent from Seed in ParticleRender.</li></ul>
+  </li>
+    <li>HeavyProcess
+  <ul><li>Applies more accurate but heavier calculation. See Fig14A for example.</li></ul>
+  </li>
+
+</ul>
+</p>
+</body>
+</html>
