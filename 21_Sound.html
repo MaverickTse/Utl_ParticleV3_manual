@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<title>21: Sound</title>
+</head>
+
+<body>
+<figure>
+<img src="21.png">
+<figcaption>Fig21: Let particle speed and frequency to respond to sound.</figcaption>
+</figure>
+
+
+<h2>Sound</h2>
+<p>
+Let particles' speed and output frequency to change according to audio volume at defined frequency range.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>SamplePos </li>
+  <ul>
+  <li>Set the frequency range where volume data would be obtained. </li>
+  <li>1 for the lowest 10% frequency, 10 for the highest 10% frequency.</li>
+  </ul>
+<li>Sample2 </li>
+  <ul>
+  <li>Get another volume data from another frequency range besides SamplePos. </li>
+  <li>Set this to 0 to disable this feature.</li>
+  </ul>
+<li>Freq </li>
+  <ul>
+  <li>0: Output frequency does not respond to volume. </li>
+  <li>1: Output frequency responds to volume. </li>
+  </ul>
+<li>Speed </li>
+  <ul>
+  <li>0: Particle speed does not respond to volume.</li>
+  <li>1: Particle speed responds to volume.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Get current audio data: When checked, use the audio data as reported by Advanced Editing at current position. Only a single Sound@ can have this option enabled. Uncheck this to use external data file.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Filename </li>
+  <ul>
+  <li>The file where audio data should be saved to or retrieved from.</li>
+  <li>automatically saves into the particle_music folder.</li>
+  </ul>
+<li>Recording </li>
+  <ul>
+  <li>Save the audio data to file where this object spans. </li>
+  <li>The data will be saved to the particle_music folder, which resides at the same level as particle_ri_ver3.anm </li>
+  <li>When checked, particles will not respond to audio volume.</li>
+  <li>You need to PLAY the project at least once in order to obtain the file.</li>
+  </ul>
+<li>delayed_start </li>
+  <ul>
+  <li>Skip a portion of the recorded data from the beginning. Value in <font color="red">seconds</font>. </li>
+  </ul>
+<li>Freq_Multiplier </li>
+  <ul>
+  <li>A percentage value to adjust the magnitude of effect for volume data to have on the output frequency. Use 100 as default, 200 to double the effect, 50 to half the effect. </li>
+  </ul>
+<li>Additive value </li>
+  <ul>
+  <li>Unchecked: base Frequency is multiplied with audio volume and multiplier. </li>
+  <li>Checked: base Frequency is added to volume data*multiplier </li>
+  </ul>
+<li>Spd_multiplier </li>
+  <ul>
+  <li>Similar to Freq_Multiplier but acts on particle speed. </li>
+  </ul>
+<li>Additive value </li>
+  <ul>
+  <li>When checked, adds volume data to base speed value. </li>
+  </ul>
+<li>From_another </li>
+  <ul>
+  <li>Get volume data from yet another frequency range. </li>
+  <li>Value range: 0~10</li>
+  <li>Use 0 to disable this feature</li>
+  </ul>
+<li>Support Style3 </li>
+  <ul>
+  <li>When checked, affects speed only when using with Style3@ </li>
+  </ul>
+
+</ul>
+</p>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<html>
+
+<head>
+<title>18: Object3D and Glassy2D</title>
+</head>
+
+<body>
+<figure>
+<img src="18A.png">
+<figcaption>Fig18A: One of the output type(2:cone) of Object3D.</figcaption>
+</figure>
+
+<img src="18B.png">
+<figcaption>Fig18B: One of the output type(4:curved surface) of Object3D. Emission origin is on the right end.</figcaption>
+</figure>
+
+
+<figure>
+<img src="18C.png">
+<figcaption>Fig18C: Glassy2D. Making particles look like made up of glass using magnification, blur and bevel.</figcaption>
+</figure>
+
+<h2>Object3D</h2>
+<p>
+Emit some basic 3D shapes, or output some PMD model. Since the base shape is used for the object's face, using Circle or Triangle as base shape may looks bad.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Type</li>
+  <ul>
+  <li>0: 6-face Cube</li>
+  <li>1: Sphere</li>
+  <li>2: Cone</li>
+  <li>3: Double-cone (like tetrahedron)</li>
+  <li>4: Surface bending</li>
+  <li>5: Rod, with depth along the z-axis</li>
+  <li>6: MikuMikuDance model data <font color="red">(requires 3rd party utilities, not yet ported to English.)</font></li>
+  <li>For type 6, if anyone want to port the script on his own, you can find more details in the video: <a href="http://www.nicovideo.jp/watch/sm15349534" target="_blank">http://www.nicovideo.jp/watch/sm15349534</a></li>
+  </ul>
+  
+<li>Size </li>
+  <ul><li>A magnification value for type 4 and 6, a simple size value for other types. </li></ul>
+
+
+<li>SplitCount</li>
+  <ul>
+  <li>The fineness of 3D surfaces. </li>
+  <li>Type 1: smoothness of sphere </li>
+  <li>Type 2,3: number of faces </li>
+  <li>Type 4: smoothness of curvature</li>
+  <li>Type 5: outline threshold </li>
+  </ul>
+
+<li>PathID </li>
+  <ul><li>Path ID pointing to .dat file generated from pmd model data. For type 6 only and should be used with Path@ </li></ul>
+  
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Anti-alias: When checked, smooth out the object outline a bit. 
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Type4H_curvature </li>
+  <ul>
+  <li>Defines the degree of bending. </li>
+  <li>At 100, it acts like the surface completely wraps around a rod with radius as defined in Type4H_radius. At 0, the surface is unwrapped. </li>
+  </ul>
+
+<li>Type4H_radius </li>
+  <ul>
+  <li>Defines the radius of a virtual rod which the surface would wrap around. A smaller value cause more prominent curvature.</li>
+  </ul>
+
+<li>Type4V_curvature </li>
+  <ul>
+  <li>Similar to Type4H_curvature but curves around another axle. </li>
+  </ul>
+
+<li>Type4V_radius </li>
+  <ul>
+  <li>Similar to Type4H_radius but defines the other axle. </li>
+  </ul>
+
+<li>Type4Spd </li>
+  <ul>
+  <li>Curvature changes as the particle move along. See Fig18B for reference.</li>
+  </ul>
+
+<li>Type5Depth </li>
+  <ul>
+  <li>Length of the rod. </li>
+  </ul>
+
+<li>Type6Center </li>
+  <ul>
+  <li>Change the center of the model. At 0, it is the default center of PMD model, usually in-between two feet. </li>
+  </ul>
+  
+</ul>
+</p>
+<hr>
+<h2>Glassy2D</h2>
+<p>Make particles to have a glass feel (Fig18C). This effect is limited by the AviUtl Max Resolution setting. If <i>project dimension+ 2* particle dimension &gt max dimension</i>, the particles will not be rendered correctly.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Magnification </li>
+  <ul>
+  <li>&lt 100: as if convex lens (magnify)  </li>
+  <li>&gt 100: as if concave lens (shrink) </li>
+  </ul>
+<li>X </li>
+  <ul>
+  <li>Visible top (horizontal)  </li>
+  <li>50: Center; 0: Left; 100: Right</li>
+  </ul>
+<li>Y </li>
+  <ul>
+  <li>Visible top (vertical)  </li>
+  <li>50: Center; 0: Top; 100: Bottom</li>
+  </ul>
+<li>EdgeAngle </li>
+  <ul>
+  <li>Angle of shadow </li>
+  </ul>
+  
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>Invert: when checked, invert the background image where the particle is.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>EdgeHeight </li>
+  <ul>
+  <li>How thick the shadow should be.
+  </li>
+  </ul>
+<li>EdgeWidth </li>
+  <ul>
+  <li>Width of shadow.
+  </li>
+  </ul>
+<li>Blur </li>
+  <ul>
+  <li>Blur size.
+  </li>
+  </ul>
+<li>LightStr </li>
+  <ul>
+  <li>Light strength for blur.
+  </li>
+  </ul>
+<li>rAspect </li>
+  <ul>
+  <li>Aspect ration when applying blur.
+  </li>
+  </ul>
+<li>Adj filter order </li>
+  <ul>
+  <li>When checked, the Bevel effect will be applied last.
+  </li>
+  </ul>
+<li>Precision </li>
+  <ul>
+  <li>A value of 15 should give satisfactory result.
+  </li>
+  </ul>
+
+</ul>
+</p>
+
+</body>
+</html>
