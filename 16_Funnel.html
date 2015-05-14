@@ -1,0 +1,156 @@
+<html>
+
+<head>
+<title>16: Funnel</title>
+</head>
+
+<body>
+<figure>
+<img src="16.png">
+<figcaption>Fig16: Funnel. Looks like the Bohr atom model, or planetary model... whatever.</figcaption>
+</figure>
+
+
+<h2>Funnel</h2>
+<p>
+Let something to orbit around a shape.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Count </li>
+  <ul>
+  <li>Number of orbiting objects (i.e. "funnels")</li>
+  </ul>
+<li>Size </li>
+  <ul>
+  <li>Size of funnels</li>
+  </ul>
+<li>Radius </li>
+  <ul>
+  <li>Orbital radius</li>
+  </ul>
+<li>RingCount </li>
+  <ul>
+  <li>Number of rings around the particle.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Uniform Interval: when checked, funnels are arranged in orbit with equal separation.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Shape </li>
+  <ul>
+  <li>Shape of funnel:</li>
+  <li>(Leave empty): use the particle's shape as funnel</li>
+  <li><i>random</i>: randomly selects from basic shapes </li>
+  <li>User defined shapes: <i>{shape1,shape2,...,shapeN}</i> </li>
+  <li>Text: <i>*<font color="blue">YourText</font> </i> </li>
+  <li>External text, image or video: <i>path<font color="blue">#</font></i>, replace # with a PathID. </li>
+  <li>Basic shape with tweaks: <i>&amp;<font color="blue">#</font>,r&amp;{<font color="red">list_of_shapes</font>} </i> </li>
+    <ul>
+	<li><font color="blue">#</font> is the size of funnel (a number). </li>
+	<li><font color="red">list_of_shapes</font> is like <i>Circle,Square,Triangle</i>. Funnel shape will be chosen from the list. </li>
+	</ul>
+  <li>Text with tweaks: <i>&amp;<font color="blue">font</font>,<font color="green">decoration(0~4)</font>,<font color="purple">color2</font>,r&amp;*<font color="0x999999">YourText</font>  </i> </li>
+     <ul>
+	 <li><font color="blue">font</font>: a font face name, like <i>Lucida Sans Unicode</i> </li>
+	 <li><font color="green">decoration(0~4)</font>: add border or shadow </li>
+	 <li><font color="purple">color2</font>: a hex color code like <i>0xffaa33</i> for border/shadow</li>
+     </ul>	 
+  </ul>
+<li>Color </li>
+  <ul>
+  <li>Color setting for ring and funnel.</li>
+  <li><i>random</i>: randomize all color.</li>
+  <li><i>{color1,color2,...,colorN}</i>: select a color from the list in order. Each color is a hex code.Add a minus sign before a hex code(or <i>random</i>) to reserve that color for the ring only.</li>
+  </ul>
+<li>OrbitalSpd </li>
+  <ul>
+  <li>Angular speed of funnels. </li>
+  <li>Format: <i>{lower limit,upper limit,option} </i> </li>
+  <li>When option=1, there is 50% chance that the sign of angular speed will be reversed. </li>
+  </ul>
+<li>Sync with orbit </li>
+  <ul>
+  <li>A funnel should stay in a fixed position relative to the particle, like a geosynchronous satellite orbiting around Earth. Need to set OrbitalSpd to 0 for perfect match. </li>
+  </ul>
+<li>SpinSpd</li>
+  <ul>
+  <li>Speed of funnel's self-spin around the z-axis. </li>
+  <li>Format: <i>{lower limit,upper limit,option} </i> </li>
+  <li>When option=1, there is 50% chance that the sign of speed will be reversed. </li>
+  </ul>
+<li>Ring{Size_Width} </li>
+  <ul>
+  <li>Sets ring size and ring thickness.</li>
+  <li>Format: <i>{size,thickness}</i> </li>
+  <li>When only a single value is given, the value will be ring size and 2% of that value will be the thickness. </li>
+  </ul>
+<li>RingShape </li>
+  <ul>
+  <li>Built-in basic shapes only. </li>
+  <li><i>random</i>, or a list like <i>{Circle,Square,Pentagon}</i> which utilize the shapes one-by-one</li>
+  <li>Use <i>&amp;r&amp;{Circle,Square,Pentagon}</i> to select randomly from the list. </li>
+  </ul>
+<li>RingRotSpd </li>
+  <ul>
+  <li>Spinning speed of the ring(s)</li>
+  <li>Format: <i>{lower limit,upper limit,option} </i></li>
+  <li>When option=1, 50% chance to reverse the sign of value.</li>
+  </ul>
+<li>Sync Ring Rot </li>
+  <ul>
+  <li>Similar to Sync with orbit, but applies to ring.</li>
+  </ul>
+<li>RingSplitAng </li>
+  <ul>
+  <li>The angle difference between multiple rings. </li>
+  </ul>
+<li>Alpha_Mag </li>
+  <ul>
+  <li>Transparency and magnification for funnel and ring. </li>
+  <li>Format: <i>{starting alpha,ending alpha,starting mag, ending mag}</i></li>
+  </ul>
+<li>LinkAlpha_Mag0~1 </li>
+  <ul>
+  <li>Applies Alpha_Mag to particle's core. </li>
+  <li>Format: <i>{alpha sync ON/OFF,mag sync ON/OFF} </i> </li>
+  <li>1=ON, 0=OFF </li>
+  </ul>
+<li>Side_R_Side </li>
+  <ul>
+  <li>Randomization range for funnel and ring. </li>
+  <li>Format: <i>{funnel size range,orbit radius range,ring size range}</i> </li>
+  </ul>
+<li>3D0~1{Orb_Rot_Circle} </li>
+  <ul>
+  <li>Set whether the funnel and ring should spin in 3D (i.e. rotate around x or y axis) </li>
+  <li>Format: <i>{Funnel orbit 3D ON/OFF,Funnel spin 3D ON/OFF, Ring spin 3D ON/OFF} </i> </li>
+  <li>0=OFF, 1=ON </li>
+  </ul>
+<li>ApplyFilter0~2 </li>
+  <ul>
+  <li>Applies Filter@ or Filter(For_monochrome)@ to funnel and ring (as the same time). </li>
+  <li>Default is <i>{1,1,1,1,1,1,1,1,1,1,1}</i> a list of 11 numbers, corresponding to the filter order in this object. Enabling all filters.</li>
+  <li>To disable a filter, set the corresponding value to zero. </li>
+  <li>Set to 2 to enable randomization of filter parameters per funnel and ring. </li>
+  </ul>
+<li>Cam{Fan_Cir}0~1 </li>
+  <ul>
+  <li>Set if the funnels or rings should face towards camera automatically. </li>
+  <li>Format: <i>{funnel ON/OFF,ring ON/OFF} </i> </li>
+  <li>0= do not face camera, 1= face camera </li>
+  </ul>
+  
+</ul>
+</p>
+</body>
+</html>
