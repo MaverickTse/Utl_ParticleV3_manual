@@ -1,0 +1,463 @@
+<html>
+
+<head>
+<title>13: Style, Style2, Style3 and Style4 </title>
+</head>
+
+<body>
+<figure>
+<img src="13A.png">
+<figcaption>Fig13A: Style, effect of x-Facing and Pattern. The particle's base, as defined in ParticleRender@ is a simple output in a straight line moving downwards. When x-Facing of Style &gt 0, The emission origin is fluctuated within a range (see the green vertical tails on the left). The cyan particles has a pattern value of 101 while the red one has 0. The difference is subtle, but you should notice the change in emission origin is smoother at high pattern value. All seed value as -1.</figcaption>
+</figure>
+
+<figure>
+<img src="13B.png">
+<figcaption>Fig13B: Style, effect of Fluctuate option. Yellow particles are moving in a straight line. The green one is almost the same as the yellow one except that the Fluctuate check box is ticked.</figcaption>
+</figure>
+
+<h2>Style</h2>
+<p>
+Varies particle emission origin and change the movement pattern.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>x-Facing </li>
+  <ul>
+  <li>Emission origin to be varied along the x-axis within this range.</li>
+  </ul>
+<li>y-facing </li>
+  <ul>
+  <li>Emission origin to be varied along the y-axis within this range.</li>
+  </ul>
+<li>z-Facing </li>
+  <ul>
+  <li>Emission origin to be varied along the z-axis within this range. </li>
+  </ul>
+<li>Interval </li>
+  <ul>
+  <li>A smaller value will give more abrupt change.</li>
+  <li>This is a function of particle count and therefore appearance will change when Frequency altered.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Fluctuate: Make particles to drift along the output direction. See Fig13B for reference.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Pattern0~101 </li>
+  <ul>
+  <li>Valid value from 0 to 101.</li>
+  <li>Define the smoothness of change for emission origin.</li>
+  <li>0 is more bumpy, 101 is the most smooth. See Fig13A for details.</li>
+  </ul>
+<li>\FluctSpeed </li>
+  <ul>
+  <li>Set the speed of fluctuation when Fluctuate is enabled. </li>
+  </ul>
+<li>\FluctWidth </li>
+  <ul>
+  <li>Magnitude of fluctuation when Fluctuate is enabled. </li>
+  <li>Input format: <i>{x,y,z,ref}</i>, where ref is 0 or 1. </li>
+  <li>ref defines whether the direction of fluctuation should be based on(perpendicular to) particle's  movement direction. 0: independent from particle movement; 1: it depends</li>
+  </ul>
+<li>\Indvl_Spd_W </li>
+  <ul>
+  <li>Set the variation range of fluctuation speed and amplitude.</li>
+  <li>Input format: <i>{Speed,Amplitude} </i> </li>
+  <li>When only a single value is given, same as {0,Amplitude}</li>
+  </ul>
+<li>@Irregular </li>
+  <ul>
+  <li>Adds jumping movement to particles. A particle will diverge from the main path, then curve back to the main path. Looks like a group of dolphins skimming on sea surface.</li>
+  </ul>
+<li>@IrrProbability </li>
+  <ul>
+  <li>The chance that a particle would have jumping movement.</li>
+  </ul>
+<li>@IrrVector </li>
+  <ul>
+  <li>The allowable range and direction for jumping movement.</li>
+  <li>Input format: <i>{x,y,z} </i> </li>
+  <li>A single value will set the y-range only. </li>
+  </ul>
+<li>@IrrSpeed</li>
+  <ul>
+  <li>The speed of particle when jumping event occurs.</li>
+  </ul>
+<li>@IrrIntvl </li>
+  <ul>
+  <li>A time interval in frame count. For every interval, a particle is decided to have jumping movement or not according to @IrrProbability.</li>
+  </ul>
+<li>#IrregularII </li>
+  <ul>
+  <li>Adds random bending to particle's path. </li>
+  </ul>  
+<li>#IrrProbabilityII </li>
+  <ul>
+  <li>The chance that a particle will have random bending. </li>
+  </ul>  
+<li>#IrrIntvlII </li>
+  <ul>
+  <li>A time interval. A particle is decided to have bending event or not for every interval lapsed.</li>
+  </ul>  
+<li>*CustomFunction </li>
+  <ul>
+  <li>Use a custom function to direct particle's behaviour. </li>
+  </ul>  
+<li>*PathID </li>
+  <ul>
+  <li>When the custom function is written in an external text file, attach the Path@ component and set this ID accordingly. </li>
+  </ul>  
+<li>*Use Script </li>
+  <ul>
+  <li>Enable this to define your function using the <i>Script control</i> effect. </li>
+  </ul>  
+</ul>
+</p>
+<h3>About custom function</h3>
+<p>
+Sample:<br/>
+<pre>
+	function vector(t)
+	local r=300
+	local vx=r*math.sin(math.pi*t*2)
+	local vy=r*math.cos(math.pi*t*2)
+	local vz=0
+	return vx,vy,vz
+	end
+</pre>
+where <font color="blue">t</font> is the time lapsed since particle emission in seconds. <font color="blue">vx, vy and vz</font> are velocity components.
+</p>
+<hr/>
+<figure>
+<img src="13C.png">
+<figcaption>Fig13C: Style2. In essence, it is an explosion simulation effect.</figcaption>
+</figure>
+<figure>
+<img src="pv3FireworkSimNC_optimized.gif">
+<figcaption>Fig13Anm: A video sample using Style2 to simulate firework. An object alias for this is already included in the package.</figcaption>
+</figure>
+<h2>Style2</h2>
+<p>
+Allows changing particle direction in due course and allows braking. Firework effect can be achieved when using with Concurrent emission.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>ScatterTime </li>
+  <ul>
+  <li>A delay time after which particle would change direction. </li>
+  <li>In milliseconds</li>
+  <li>No direction change when zero.</li>
+  </ul>
+<li>xy-Spread </li>
+  <ul>
+  <li>A sector area on the xy-plane, within which a particle would change direction. </li>
+  <li>Particle will not scatter if zero.</li>
+  </ul>
+<li>z-Spread </li>
+  <ul>
+  <li>When &gt 0, particle would bend in the z-axis direction. </li>
+  </ul>
+<li>BrakeTime </li>
+  <ul>
+  <li>Milliseconds-to-stop for a particle. Even when a particle lost speed, effect of gravity and acceleration still apply. </li>
+  </ul>
+</ul>
+</p>
+<h3>Check box</h3>
+<p>Sync with concurrent emission: remove randomness among concurrent particles. Randomness will only be introduced when using with ScatterTime.
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Uniform spread </li>
+  <ul>
+  <li>When particles break apart, particles break evenly in the sector defined by xy-Spread. </li>
+  </ul>
+<li>Sync with Rot</li>
+  <ul>
+  <li>Rotation of all particles shall be in sync. </li>
+  </ul>
+<li>Sync filter0~1 </li>
+  <ul>
+  <li>Disable or enable randomness for Filter@ </li>
+  <li>Input format:<i>{[0/1],[0/1]...}</i> (a max of 11 numbers)</li>
+  <li>Example: Filter@Blur→Filter@Color shift→Filter@Noise. To turn off randomness for Noise among concurrent particles, use <i>{0,0,1,0,0,0,0,0,0,0,0}</i>
+  </ul>
+<li>Show track after </li>
+  <ul>
+  <li>Show tails after scattering when using with Trajectory@ </li>
+  </ul>
+<li>Scatter on reflection</li>
+  <ul>
+  <li>Particle scatter on bouncing when using with Bounce@ or Bounce2@ </li>
+  </ul>
+<li>ScatterSurface </li>
+  <ul>
+  <li>The angle for plane of scattering. </li>
+  <li>{horizontal rotation, vertical rotation} </li>
+  <li>A single value will set vertical rotation only</li>
+  <li>{0,0} for a plane lying on horizontal</li>
+  <li>Use the letter <b>r</b> instead of number to randomize within 0 to 360</li>
+  </ul>
+<li>PostScatSpd </li>
+  <ul>
+  <li>The speed of particle after scattering. </li>
+  <li>An absolute value will be the final speed, adding a % sign defines a randomization range.</li>
+  <li>Leave this empty for no change</li>
+  </ul>
+<li>PostScatAccel </li>
+  <ul>
+  <li>Similar to PostScatSpd but for setting acceleration. </li>
+  </ul>
+<li>Filter1Scat0~2 </li>
+  <ul>
+  <li>Adjust the behaviour of VarVal1 in Filter@ and Filter(For monochrome) on scattering. </li>
+  <li>Assuming an object with: Filter@Blur→Filter@Color shift→Filter@Noise </li>
+  <li>entering <i>{0,1,1,0,0,0,0,0,0,0,0}</i> will link color shift with noise on scatter.</li>
+  <li>1: Change VarVal1 after scattering </li>
+  <li>2: Change of VarVal1 would finish on scattering.</li>
+  </ul>
+<li>Indvl_BrTime_EdTime </li>
+  <ul>
+  <li>Defines randomization range for ScatterTime and BrakeTime. </li>
+  <li>Input format: <i>{scatter,brake}</i></li>
+  </ul>
+<li>Unsync0~1 </li>
+  <ul>
+  <li>Override effect of Sync with concurrent emission for ScatterTime and BrakeTime.</li>
+  <li>Input format: <i>{scatter sync off,brake sync off}</i>, where value can be 0 or 1 </li>
+  <li>0: keep sync; 1: break sync</li>
+  </ul>
+<li>StopScatLink0~2 </li>
+  <ul>
+  <li>For linking ScatterTime and BrakeTime. </li>
+  <li>0: do not link</li>
+  <li>1: brake after a defined time counting from scattering</li>
+  <li>2: brake first, then scatter after a defined time. Invalid when <i>Scatter on reflection</i> is enabled.</li>
+  </ul>
+<li>LinkTime </li>
+  <ul>
+  <li>Duration in milliseconds for use with StopScatLink0~2. </li>
+  <li>Use &lt 1 to disable this.</li>
+  </ul>
+<li>IndvlLink </li>
+  <ul>
+  <li>Add variation to LinkTime. </li>
+  </ul>
+
+</ul>
+</p>
+<hr/>
+<figure>
+<img src="13D.png">
+<figcaption>Fig13D: Style3. A fountain-like effect that bend particles along an elliptical path.</figcaption>
+</figure>
+
+<h2>Style3</h2>
+<p>
+Send particles into circular or elliptical motion.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Center-x </li>
+  <ul>
+  <li>Center coordinate (X) of circular motion </li>
+  <li>This value can be animated over time</li>
+  </ul>
+<li>Center-y </li>
+  <ul>
+  <li>Center coordinate (Y) of circular motion  </li>
+  <li>This value can be animated over time</li>
+  </ul>
+<li>Center-z </li>
+  <ul>
+  <li>Center coordinate (Y) of circular motion </li>
+  <li>This value can be animated over time</li>
+  </ul>
+<li>AngularSpd </li>
+  <ul>
+  <li>Angular speed, in other words, degree per second. </li>
+  </ul>
+  
+</ul>
+<p>
+<h3>Check box</h3>
+<p>
+Show coordinate: Display the focal point for circular motion as a red circle. See Fig13D for reference.
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Random angular </li>
+  <ul>
+  <li>Randomize angular speed.</li>
+  </ul>
+<li>RandRange </li>
+  <ul>
+  <li>Input format: <i>{lower limit,upper limit,reverse}</i></li>
+  <li>When reverse is 1, there will be 50% chance that the rotation being reversed. </li>
+  <li>If only a single value is given, a +ve value will set the upper limit, a -ve value will set the lower limit, and all assume reverse=0.</li>
+  </ul>
+<li>AngAccel </li>
+  <ul>
+  <li>Angular acceleration (change of angular speed over time).</li>
+  <li>-ve value to slow down, +ve value to speed up. Unaffected by the sign of angular speed. </li>
+  </ul>
+<li>Positive accel </li>
+  <ul>
+  <li>Unchecked: After decelerating to zero speed, starts accelerating in the opposite direction.</li>
+  <li>Checked: When angular speed reached zero, stops circular motion.</li>
+  </ul>
+<li>RadialSpd </li>
+  <ul>
+  <li>Particle speed with respect to center. </li>
+  <li>Input format: <i>{lower limit,upper limit,reverse}</i></li>
+  <li>+ve value: move away from center; -ve: move towards center.</li>
+  <li>reverse=1: 50% chance reversing direction</li>
+  </ul>
+<li>RSpd positive </li>
+  <ul>
+  <li>Unchecked: particle moves away from center after reaching it. </li>
+  <li>Checked: particle stops after reaching center</li>
+  </ul>
+<li>Radius limit </li>
+  <ul>
+  <li>Set a limit on how far a particle can move away from center. </li>
+  <li>Undefined if left empty.</li>
+  </ul>
+<li>IndvlRadiusLimit </li>
+  <ul>
+  <li>Varies the radius limit per each particle. </li>
+  </ul>
+<li>RotSurface </li>
+  <ul>
+  <li>Sets the plane of circular motion and z-direction of spherical motion.</li>
+  <li>For circular motion: <i>{x-tilt,y-tilt}</i></li>
+  <li>A single value is the same as {x-tilt,0}</li>
+  <li>Input <font color="red">r</font> in place of number to randomize the parameter</li>
+  <li>For spherical motion: <i>{z-angular speed,overall rotation}</i></li>
+  <li>A single value is the same as {z-angular speed,0}</li>
+  <li>Input <font color="red">r</font> in place of number to randomize the parameter</li>
+  <li>Angles in degree</li>
+  </ul>
+<li>CenterType0~2 </li>
+  <ul>
+  <li>Sets how circle center is defined. </li>
+  <li>0: as defined by Center-x -y -z sliders</li>
+  <li>1: particle's emission origin will be the center. Requires radial speed to be set to obtain circular motion.</li>
+  <li>2: Randomize the center coordinate within the area defined by Type2RandxRng, Type2RandyRng and Type2RandzRng (see below).</li>
+  </ul>
+<li>Type2RandxRng </li>
+  <ul>
+  <li>boundaries on x-axis when using CenterType=2 </li>
+  <li>Format: <i>{lower limit,upper limit}</i> </li>
+  </ul>
+<li>Type2RandyRng </li>
+  <ul>
+  <li>boundaries on y-axis when using CenterType=2 </li>
+  <li>Format: <i>{lower limit,upper limit}</i> </li>
+  </ul>
+<li>Type2RandzRng </li>
+  <ul>
+  <li>boundaries on z-axis when using CenterType=2 </li>
+  <li>Format: <i>{lower limit,upper limit}</i> </li>
+  </ul>
+<li>Spherical motion </li>
+  <ul>
+  <li>Send particles into spherical motion. See <i>RotSurface</i> above for details on tweaking this. </li>
+  </ul>
+
+</ul>
+</p>
+<hr/>
+<figure>
+<img src="13E.png">
+<figcaption>Fig13E: Style4. Using progress slider can control the animation property of the overall particle object. If Progress is not changing linearly, switching Differential to 1 will display a changing number when the Progress slider is changed.</figcaption>
+</figure>
+<h2>Style4</h2>
+<p>
+Control the time and progress of emission.
+</p>
+
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Progress </li>
+  <ul>
+  <li>Display the state of particle object at this moment. </li>
+  <li>Value in seconds</li>
+  <li>If StTime (in ParticleRender@) is set, -ve value will take effect</li>
+  <li>The Enable Progress check box needs to be ticked in order for this to take effect</li>
+  </ul>
+<li>Differential </li>
+  <ul>
+  <li>Display a kind of play speed factor</li>
+  <li>1: Playing at normal speed; 2: playing at double speed</li>
+  <li>Set zero to hide this status display</li>
+  </ul>
+<li>LastAdj </li>
+  <ul>
+  <li>Define the meaning of final time. </li>
+  <li>0: object's total survival time.</li>
+  <li>1: The time as defined in Progress slider. No effect if Progress slider value is less than object's survival time.</li>
+  <li>Meaningless if Vanish option is not checked in ParticleRender@</li>
+  </ul>
+ 
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Enable Progress: activate the Progress slider when checked. Otherwise the slider would have no effect.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>EmitTime </li>
+  <ul>
+  <li>Control when particles should be emitted. </li>
+  <li>Values in seconds</li>
+  <li>Format: <font color="red">{ <font color="blue">{start1,end1},{start2,end2},...,{startN,endN} </font>} </font></li>
+  <li>Example1: <b>{{1,5}} </b> → emit from 1s to 5s</li>
+  <li>Example2: <b>{{1,5},{7,9.5}} </b> → emit from 1s to 5s, then from 7s to 9.5s</li>
+  <li>Use <i>nil</i> to represent object's final time</li>
+  <li>Example3: <b>{{1,5},{7,9.5},{10,nil}} </b> → emit from 1s to 5s, 7s to 9.5s, finally from 10s to object's end.</li>
+  <li>Leave this field empty to disable this feature.</li>
+  </ul>
+<li>*ActiveTime </li>
+  <ul>
+  <li>Control when particles should move or stop. </li>
+  <li>Setting format is identical to EmitTime above</li>
+  </ul>
+<li>*RelativeTime </li>
+  <ul>
+  <li>Defines time zero for ActiveTime. </li>
+  <li>0: Object's start is zero.</li>
+  <li>1: time is counted for each particle since their emission.</li>
+  </ul>
+<li>*Continuity </li>
+  <ul>
+  <li>No effect if *RelativeTime is checked. </li>
+  <li>Checked: particles continue to move outside ActiveTime <b>once it started to move</b>. </li>
+  </ul>
+<li>*Always accel</li>
+  <ul>
+  <li>When checked, effect of acceleration still  applies even outside *ActiveTime. </li>
+  </ul>
+
+</ul>
+</p>
+
+</body>
+</html>
