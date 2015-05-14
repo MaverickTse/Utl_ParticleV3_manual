@@ -1,0 +1,260 @@
+<html>
+
+<head>
+<title>11: Text, Image and Video</title>
+</head>
+
+<body>
+<figure>
+<img src="11A.png">
+<figcaption>Fig11A: Emitting Text. This example directly entered the text to be displayed in the setting dialog. Note the <b>\n</b> which represents newline. The newline behaviour will not be visible unless the Output by row check box is ticked.</figcaption>
+</figure>
+<figure>
+<img src="11B.png">
+<figcaption>Fig11B: Emitting Text as saved in an external file. The Path@ section already set to pointing an external file. Note the PathID(Path@) and GetPath(Text@) are all set to 1.</figcaption>
+</figure>
+
+
+<h2>Text</h2>
+<p>
+Emit text as particles.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Size </li>
+  <ul>
+  <li>Font size</li>
+  </ul>
+<li>Type </li>
+  <ul>
+  <li>0: Normal</li>
+  <li>1: Shadowed</li>
+  <li>2: Thin shadow</li>
+  <li>3: Bordered</li>
+  <li>4: Thin border</li>
+  </ul>
+<li>Sort </li>
+  <ul>
+  <li>Text output order</li>
+  <li>0: Same as input order </li>
+  <li>1: Reverse of input order </li>
+  <li>2: Random order</li>
+  </ul>
+<li>SwitchIntvl </li>
+  <ul>
+  <li>By default (0), the text of a particle is fixed on emission. Setting a +ve value in this field allows a particle to change its text over its survival time.</li>
+  <li>Value as frame count</li>
+  <li>When Sort=0, text will be replaced following input order; Sort=1 switch in reverse order; Sort=3 change in random.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+Output by row: Normally each particle has only one character. When this box is checked, each particle can contains multiple characters and delimited/separated by <font color="red"><b>\n</b></font>. See Fig11A for example.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Text </li>
+  <ul>
+  <li>The text to be used in particles.</li>
+  </ul>
+<li>Font </li>
+  <ul>
+  <li>Font of text.</li>
+  <li>If empty, assume last used font</li>
+  </ul>
+<li>Color1 </li>
+  <ul>
+  <li>Text core color.</li>
+  </ul>
+<li>Color2 </li>
+  <ul>
+  <li>Color of border or shadow.</li>
+  </ul>
+<li>GetPath0~10 </li>
+  <ul>
+  <li>Should be a number the same as PathID slider in Path@</li>
+  <li>Only used if the text is defined in an external file.</li>
+  <li>See Fig11B for details</li>
+  </ul>
+<li>SyncFunnel </li>
+  <ul>
+  <li>When checked, use the same font settings for Funnel@ and Text@</li>
+  </ul>
+
+</ul>
+</p>
+<hr/>
+<figure>
+<img src="11C.png">
+<figcaption>Fig11C: Emitting Image(s) or Video(s). The Path@ section is required to set the file source.</figcaption>
+</figure>
+<h2>Image</h2>
+<p>
+Emit custom image(s) with extra filtering.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>Size </li>
+  <ul>
+  <li>Particle size after filtering </li>
+  </ul>
+<li>Shape </li>
+  <ul>
+  <li>The shape of clipping mask to be applied on each particle. </li>
+  <li>Masking center is randomly chosen within the image. </li>
+  <li>0: no mask</li>
+  <li>1: Circle </li>
+  <li>2: Square </li>
+  <li>3: Triangle </li>
+  <li>4: Pentagon </li>
+  <li>5: Hexagon </li>
+  <li>6: Star </li>
+  <li>7: Randomly choose from 1~6 for each particle</li>
+  <li>8: Irregular trapezoid </li>
+  </ul>
+<li>Scatter </li>
+  <ul>
+  <li>When set to 1, randomly shuffle the images order if Path@ points to an image series(i.e. images named as 2-digit numbers). </li>
+  </ul>
+<li>PathID </li>
+  <ul>
+  <li>The source file(s) to be used as particle images. Correspond to the PathID in Path@. </li>
+  <li>If <i>Singular</i> option in Path@ is not checked, all .avi, .mp4, .flv, .bmp and .jpg in the same folder will be used. Tick <i>Singular</i> if you want to use the selected file only.</li>
+  </ul>  
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+Center Only: when checked, the masking center will always be the center of original image.
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Set image size</li>
+  <ul>
+  <li>Resize the source image prior masking. </li>
+  </ul>
+<li>Size_as_pixel</li>
+  <ul>
+  <li>The target image size when <i>Set image size</i> above is enabled. </li>
+  <li>Format: <i>{Width,Height}</i> </li>
+  <li>If a single value is given, width and height will be the same. </li>
+  </ul>
+<li>BGColor </li>
+  <ul>
+  <li>When checked, multiply background color (at emission origin) with the image. </li>
+  </ul>
+<li>BGPathID</li>
+  <ul>
+  <li>To be used when BGColor is checked. </li>
+  <li>0: The current screen background is used. </li>
+  <li>&gt 0: Use an external image (in image original size) as background data. Needs an extra <i>Path@</i> section. </li>
+  </ul>  
+</ul>
+</p>
+<hr/>
+<figure>
+<img src="11D.png">
+<figcaption>Fig11D: Emitting Videos with control. The Image@ (or Text@) section is required. Video@ alone will not work.</figcaption>
+</figure>
+<h2>Video</h2>
+<p>
+Requires Image@ or Text@ attached prior to this section. Process video and image series.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>PlayPos </li>
+  <ul>
+  <li>The start of playback position as a percentage of video length. </li>
+  <li>0 starts from the beginning, 50 starts from the middle. </li>
+  </ul>
+<li>PlaySpeed </li>
+  <ul>
+  <li>Playback speed as percent. </li>
+  <li>100 for normal speed, 200 for double speed. </li>
+  </ul>
+<li>RandPos </li>
+  <ul>
+  <li>Set to 1 to randomize playback starting point. </li>
+  </ul>
+<li>SyncPos </li>
+  <ul>
+  <li>Set to 1 to make all particles sharing the same scene. </li>
+  </ul>
+  
+</ul>
+</p>
+<h3>Check box</h3>
+<p>
+Enable alpha channel: enable image transparency if the source file contains such information. Use with cautions.
+</p>
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Randomize speed </li>
+  <ul>
+  <li>Check to randomize playback speed. </li>
+  </ul>
+<li>SpdRandRange </li>
+  <ul>
+  <li>Set the randomization range for playback speed. </li>
+  <li>Format: <i>{lower limit,upper limit,option}</i> </li>
+  <li>When <i>option</i> is 1, there will be 50% chance that the sign of the speed value be reversed. </li>
+  </ul>
+<li>OutputImageSeries </li>
+  <ul>
+  <li>Output image series or text series instead of video from the source folder. </li>
+  </ul>
+<li>0NA:1Bl:2ColorKey </li>
+  <ul>
+  <li>Enable chroma-keying or color-keying on source file. </li>
+  <li>0: None applied </li>
+  <li>1: Chroma key </li>
+  <li>2: Color key </li>
+  </ul>
+<li>HueRng </li>
+  <ul>
+  <li>Hue/Brightness Range </li>
+  <li>First parameter for chroma key or color key. </li>
+  </ul>
+<li>SatRng </li>
+  <ul>
+  <li>Saturation/Color difference range </li>
+  <li>Second parameter for chrom key or color key. </li>
+  </ul>
+<li>BoundaryAdj0~5 </li>
+  <ul>
+  <li>Boundary adjustment for chroma key. </li>
+  <li>0: None </li>
+  <li>1: For chroma key </li>
+  <li>2: For color key </li>
+  </ul>
+<li>ColorAdj </li>
+  <ul>
+  <li>Color correction for chroma key </li>
+  <li>0: None </li>
+  <li>1: ON </li>
+  </ul>
+<li>AlphaAdj </li>
+  <ul>
+  <li>Transparency correction </li>
+  <li>0: OFF </li>
+  <li>1: ON </li>
+  </ul>
+<li>PickColor </li>
+  <ul>
+  <li>The primary sampling color for chroma/color-keying. </li>
+  </ul>
+  
+</ul>
+</p>
+</body>
+</html>
