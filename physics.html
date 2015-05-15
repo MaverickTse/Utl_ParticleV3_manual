@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Basic Physics Instant Notes</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+</head>
+<body>
+<h1>Basic Physics Instant Notes</h1>
+<p>
+This HTML document intents to introduce some physics terminology to layman, so that user without middle school physics background can understand the rest of the manual better. This is NOT a comprehensive physics guide.
+</p>
+<h2>0. Some abbreviations</h2>
+<p>
+<ul>
+<li>+ve = positive</li>
+<li>-ve = negative</li>
+<li>Accel = acceleration</li>
+<li>Intvl = Interval</li>
+<li>Spd = speed</li>
+<li>&theta; = theta = a Greek symbol often denoting angle.</li>
+<li>&omega; = omega = a Greek symbol often denoting "angular speed"</li>
+<li>t = time</li>
+</ul>
+</p>
+<h2>1. Displacement</h2>
+<p>
+The distance travelled by an object over a period of time.<br/>
+Specifically,<br/>
+$$Displacement= Final Position - Initial Position $$
+Displacement can be signed to denote the direction of movement.<br/>
+In real life, displacement is in the unit "meter" (m) or "kilometer"(km). In computer graphics, "pixel"(px) is more commonly used.
+</p>
+<h2>2. Speed and Velocity</h2>
+<p>
+For this script, there is no distinction on these two terms, defining as:
+$$ velocity = {Displacement \over time} $$
+Just like displacement, it can be signed to represent direction.
+</p>
+<h2>3. Acceleration and Deceleration</h2>
+<p>
+Acceleration: speed is increasing over time.<br/>
+Deceleration: speed is decreasing<br/>
+A -ve Acceleration is the same as deceleration, so you'd only see the abbreviation "Accel" but no "Decel" in this script.
+$$ Acceleration = {finalVelocity-initialVelocity \over time} $$
+</p>
+<h2>4. Force </h2>
+<p>
+This is "something" that change the motion of an object. Force is required to generation acceleration. Without force, a stationary object stays still, while a moving object will keep moving in a straight line at constant speed.
+</p>
+<p>
+A larger force cause larger change in acceleration:
+$$ Force = mass \times acceleration $$
+which is usually written as simply:
+$$ F = ma $$
+</p>
+<p>
+In this particular script, the <i>gravity</i>, <i>Wind</i> and <i>FluxField</i> simulate the application of external force on object. The script has no concept of mass so assume it is a point mass of 1 unit.
+</p>
+<h2>5. Angular speed</h2>
+<p>
+To represent how fast something rotates, we use "angular speed":
+$$ angular Speed = {AngleRotated \over time} $$
+in short form:
+$$ \omega = {d \theta \over dt} $$
+This can also be a signed value to represent the direction of rotation.
+</p>
+<h2>6. Angular acceleration</h2>
+<p>
+Similar to acceleration on a straight line, the change in angular speed over time is the angular acceleration:
+$$ angular Acceleration = {\omega _f-\omega _i \over time} $$
++ve angular acceleration means spinning faster and faster.
+</p>
+<h2>7. Spinning and orbiting </h2>
+<p>
+Spinning: an object rotating along axis going through its own center, e.g. a car wheel.<br/>
+Orbiting: an object is rotating around something else, e.g. the moon is orbiting around Earth.<br/>
+</p>
+<h2>8. Geosynchronous orbiting</h2>
+<p>
+If at one moment, you observed a satellite is directly above your head, and after any arbitrary amount of time, if the satellite is still directly above your head, we say that satellite is geosynchronous. The moon's orbiting is not geosynchronous however, since it is not in a fixed position in the sky.
+<p>
+<h2>9. Air resistance</h2>
+<p>
+A force acting in the opposite direction to the movement of object. It also grows bigger as the object moves faster.
+</p>
+<h2>10. Gravity </h2>
+<p>
+This script has no concept of "Center of gravity", so just treat it as a form of uniform force acting in certain direction, or just simply "acceleration".
+</p>
+<p>
+In reality, and using the Newtonian model, the strength of gravity grows linearly from the center of a solid mass to its peak at the solid's surface, then decay with the squared distance from the solid's center.
+</p>
+</body>
+</html>

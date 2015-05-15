@@ -1,0 +1,103 @@
+<html>
+
+<head>
+<title>19: Custom Object</title>
+</head>
+
+<body>
+<figure>
+<img src="19A.png">
+<figcaption>Fig19A: Custom object presets.</figcaption>
+</figure>
+<figure>
+<img src="19B.png">
+<figcaption>Fig19B: Custom object settings.</figcaption>
+</figure>
+
+
+<h2>UserCustomObject</h2>
+<p>
+This effect alone would have no effect. It needs to read from the particle_userobj folder. The folder content is user-defined scripts with filename <i>particle_userobj#.txt</i>. Some alias have already been included in the ParticleCustomObjects folder.
+</p>
+<h3>Sliders</h3>
+<p>
+<ul>
+<li>ID </li>
+  <ul>
+  <li>The #number in <i>particle_userobj#.txt</i></li>
+  <li>Nothing happen if such file does not exist.</li>
+  </ul>
+<li>Val1, Val2, Val3 </li>
+  <ul>
+  <li>What these means depends on the object.</li>
+  <li>Temporal changes for these values are allowed.</li>
+  <li>Range from -9999 to +9999, in 0.01 step.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h3>Check box</h3>
+<p>
+RelativeTime: When checked, time is counted for each particle. Unchecked, time zero is the start of object.
+</p>
+
+<h3>Setting dialog</h3>
+<p>
+<ul>
+<li>Param1~8 </li>
+  <ul>
+  <li>Meaning depends on the object.</li>
+  </ul>
+<li>Color1,2 </li>
+  <ul>
+  <li>Optional color fields.</li>
+  </ul>
+<li>Shape1,2 </li>
+  <ul>
+  <li>Optional fields for shapes.</li>
+  </ul>
+<li>Checkbox1,2 </li>
+  <ul>
+  <li>Optional check boxes. </li>
+  </ul>
+<li>Argument </li>
+  <ul>
+  <li>A switch list consisting of 17 zero or ones.</li>
+  <li>The list corresponds to {Val1, Val2, Val3,Param1,Param2,...,Param8,Color1,...,Checkbox2}</li>
+  <li>Use 1 to enable that field, 0 to disable it.</li>
+  </ul>
+<li>Display usage </li>
+  <ul>
+  <li>Display a kind of help on the main screen, if defined in the script.</li>
+  </ul>
+
+</ul>
+</p>
+
+<h2>About defining custom objects</h2>
+<p>
+The language is LUA script, the same as other AviUtl effect script.<br/>
+Full function signature:
+<pre>
+function particle_obj(t,t0,life,pi,pj,seed,track1,track2,track3,v1,v2,v3,v4,v5,v6,v7,v8,col1,col2,fig1,fig2,check1,check2)
+</pre>
+while the argument list can be shorten depending on your needs (need to set the Argument list).<br/>
+About arguments:
+<ul>
+<li>t: elapsed time. [0..life] </li>
+<li>t0: time of generation. -ve value may return if StTime in ParticleRender has been changed.</li>
+<li>life: survival time </li>
+<li>pi: particle order ID. [0..</li>
+<li>pj: concurrent particle ID.[0..</li>
+<li>seed: random seed.</li>
+<li>track1~track3: slider values for Val1..3</li>
+<li>v1~v8: Param1~8.</li>
+<li>col1,col2: Color1,2</li> 
+<li>fig1,fig2: Shape1,2</li>
+<li>check1,check2: Checkbox1,2</li>
+</ul>
+Return value is not required.
+</p>
+</body>
+</html>
